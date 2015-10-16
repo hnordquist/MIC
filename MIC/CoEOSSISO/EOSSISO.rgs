@@ -1,0 +1,26 @@
+HKCR
+{
+	CoEOSSISO.EOSSISO.1 = s 'EOSSISO Class'
+	{
+		CLSID = s '{EC0CD914-4F34-4c25-BFC0-867155ED9BE5}'
+	}
+	CoEOSSISO.EOSSISO = s 'EOSSISO Class'
+	{
+		CLSID = s '{EC0CD914-4F34-4c25-BFC0-867155ED9BE5}'
+		CurVer = s 'CoEOSSISO.EOSSISO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {EC0CD914-4F34-4c25-BFC0-867155ED9BE5} = s 'EOSSISO Class'
+		{
+			ProgID = s 'CoEOSSISO.EOSSISO.1'
+			VersionIndependentProgID = s 'CoEOSSISO.EOSSISO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{523FA2FC-42B4-4b15-8969-D4BB25B0CEC6}'
+		}
+	}
+}

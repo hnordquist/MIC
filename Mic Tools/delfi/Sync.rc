@@ -1,0 +1,333 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Sync.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Sync.ico"
+IDI_ICON1               ICON    DISCARDABLE     "res\\icon1.ico"
+IDI_ICON2               ICON    DISCARDABLE     "res\\icon2.ico"
+IDI_ICON3               ICON    DISCARDABLE     "res\\icon3.ico"
+IDI_ICON4               ICON    DISCARDABLE     "res\\icon4.ico"
+IDI_ICON5               ICON    DISCARDABLE     "res\\icon5.ico"
+IDI_ICON6               ICON    DISCARDABLE     "res\\icon6.ico"
+IDI_ICON7               ICON    DISCARDABLE     "res\\icon7.ico"
+IDI_ICON8               ICON    DISCARDABLE     "res\\icon8.ico"
+IDI_ICON9               ICON    DISCARDABLE     "res\\icon9.ico"
+IDI_ICON10              ICON    DISCARDABLE     "res\\icon10.ico"
+IDI_ICON11              ICON    DISCARDABLE     "res\\icon11.ico"
+IDI_ICON12              ICON    DISCARDABLE     "res\\icon12.ico"
+IDI_ICON13              ICON    DISCARDABLE     "res\\icon13.ico"
+IDI_ICON14              ICON    DISCARDABLE     "res\\icon14.ico"
+IDI_ICON15              ICON    DISCARDABLE     "res\\icon15.ico"
+IDI_ICON16              ICON    DISCARDABLE     "res\\icon16.ico"
+IDI_ICON17              ICON    DISCARDABLE     "res\\icon17.ico"
+IDI_ICON18              ICON    DISCARDABLE     "res\\icon18.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 172, 90
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About DelFi"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,5,10,21,20
+    LTEXT           "DelFi Version 1.7.0.0",IDC_STATIC_NAME,40,5,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 1998,1999,2000",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,53,70,64,14,WS_GROUP
+    LTEXT           "Written by: David Pelowitz",IDC_STATIC,40,15,120,8
+    CTEXT           "DelFi deletes files in watched directories after they reach a predefined age.",
+                    IDC_STATIC,5,40,160,25
+END
+
+IDD_SYNC_DIALOG DIALOGEX 0, 0, 300, 173
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "DelFi"
+CLASS "DelFiClass"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Pause",IDC_BUTTON1,7,152,106,14
+    LTEXT           "",IDC_STATIC_ERROR,10,12,276,33
+    GROUPBOX        "Last Delete Error",IDC_STATIC,7,0,286,50
+    GROUPBOX        "Last Deleted File",IDC_STATIC,7,57,286,50
+    LTEXT           "",IDC_STATIC_DELETED,10,69,277,33
+    CTEXT           "Not yet run.",IDC_STATIC_LASTRUN,88,114,205,11,
+                    SS_SUNKEN
+    RTEXT           "Last Run At:",IDC_STATIC,36,114,46,8
+    PUSHBUTTON      "Run NOW",IDC_BUTTON2,218,152,75,14
+    LTEXT           "Cycle Time Set At:",IDC_STATIC,23,134,59,8
+    CTEXT           "",IDC_STATIC_CYCLETIME,88,133,205,11,SS_SUNKEN
+    PUSHBUTTON      "Configure",IDC_BUTTON_CONFIGURE,116,152,48,14
+    PUSHBUTTON      "Hide Now",IDC_BUTTON_HIDENOW,167,152,48,14
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 248, 169
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DelFi Configuration"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,59,148,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,138,148,50,14
+    EDITTEXT        IDC_EDIT_CYCDAYS,58,112,17,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin1",IDC_SPIN_CYCDAYS,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,76,112,11,14
+    EDITTEXT        IDC_EDIT_CYCHOURS,95,112,17,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin2",IDC_SPIN_CYCHOURS,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,113,112,11,14
+    EDITTEXT        IDC_EDIT_CYCMINUTES,130,112,17,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin3",IDC_SPIN_CYCMINUTES,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,149,112,11,14
+    LTEXT           "Cycle Time:",IDC_STATIC,20,115,38,8
+    EDITTEXT        IDC_EDIT_CYCSECONDS,164,112,17,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin4",IDC_SPIN_CYCSECONDS,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,183,112,11,14
+    EDITTEXT        IDC_EDIT_PAUSE,191,131,25,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin5",IDC_SPIN_PAUSE,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,217,131,
+                    11,14
+    RTEXT           "Max Pause Interval (sec.)",IDC_STATIC,107,135,81,8
+    CONTROL         "Hide Dialog Box",IDC_CHECK_HIDE,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,20,134,67,10
+    PUSHBUTTON      "Add New",IDC_BUTTON_ADD,7,85,72,14
+    PUSHBUTTON      "Edit Selected",IDC_BUTTON_EDIT,88,85,72,14,WS_DISABLED
+    PUSHBUTTON      "Delete Selected",IDC_BUTTON_DELETE,169,85,72,14,
+                    WS_DISABLED
+    LTEXT           "Days",IDC_STATIC,62,102,17,8
+    LTEXT           "Hours",IDC_STATIC,99,102,20,8
+    LTEXT           "Minutes",IDC_STATIC,131,102,26,8
+    LTEXT           "Seconds",IDC_STATIC,162,102,29,8
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,7,7,234,74
+END
+
+IDD_DIALOG2 DIALOG DISCARDABLE  0, 0, 222, 122
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,51,101,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,135,101,50,14
+    LTEXT           "Path:",IDC_STATIC,7,61,18,8
+    EDITTEXT        IDC_EDIT1,27,58,136,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse",IDC_BUTTON1,171,58,44,14
+    EDITTEXT        IDC_EDIT_CYCDAYS,42,29,17,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin1",IDC_SPIN_CYCDAYS,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,60,29,11,14
+    EDITTEXT        IDC_EDIT_CYCHOURS,80,29,17,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin2",IDC_SPIN_CYCHOURS,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,98,29,11,14
+    EDITTEXT        IDC_EDIT_CYCMINUTES,114,29,17,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin3",IDC_SPIN_CYCMINUTES,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,134,29,11,14
+    EDITTEXT        IDC_EDIT_CYCSECONDS,148,29,17,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin4",IDC_SPIN_CYCSECONDS,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,168,29,11,14
+    LTEXT           "Days",IDC_STATIC,46,18,17,8
+    LTEXT           "Hours",IDC_STATIC,84,18,20,8
+    LTEXT           "Minutes",IDC_STATIC,116,18,26,8
+    LTEXT           "Seconds",IDC_STATIC,146,18,29,8
+    GROUPBOX        "Delete At Age Of",IDC_STATIC,7,8,208,41
+    CONTROL         "Do Sub-Directories",IDC_CHECK_DOSUB,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,7,81,72,10
+    CONTROL         "Delete only if Archive Bit is OFF (file has been archived)",
+                    IDC_CHECK_CONSIDERARCHIVE,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | BS_MULTILINE | WS_TABSTOP,111,79,104,17
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,7,0,0
+ PRODUCTVERSION 1,7,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "Sync MFC Application\0"
+            VALUE "FileVersion", "1, 7, 0, 0\0"
+            VALUE "InternalName", "Sync\0"
+            VALUE "LegalCopyright", "Copyright (C) 1998\0"
+            VALUE "OriginalFilename", "Sync.EXE\0"
+            VALUE "ProductName", "Sync Application\0"
+            VALUE "ProductVersion", "1, 7, 0, 0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 165
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_SYNC_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 166
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 241
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 162
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 215
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 115
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About DelFi..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\Sync.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

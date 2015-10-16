@@ -1,0 +1,344 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\tree.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\tree.ico"
+IDI_ICON1               ICON    DISCARDABLE     "res\\icon1.ico"
+IDI_ICON2               ICON    DISCARDABLE     "res\\icon2.ico"
+IDI_ICON3               ICON    DISCARDABLE     "res\\icon3.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 217, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About MicXfer Configurator"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Version 1.8.0.5",IDC_STATIC_VERSION,40,21,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright © 2009 LANS, LLC. All rights reserved.",
+                    IDC_STATIC,40,32,170,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
+    LTEXT           "Written by: David Pelowitz, N-4",IDC_STATIC,40,44,99,8
+    LTEXT           "Los Alamos National Laboratory",IDC_STATIC,39,55,100,8
+    LTEXT           "MicXfer Configurator",IDC_STATIC,39,7,65,8
+END
+
+IDD_TREE_DIALOG DIALOGEX 0, 0, 348, 246
+STYLE DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "MicXfer Configurator"
+CLASS "MicXferCClass"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Apply ALL To INI File",IDOK,7,225,77,14
+    PUSHBUTTON      "Quit",IDCANCEL,177,225,77,14
+    CONTROL         "Tree1",IDC_TREE1,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,35,334,160,
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Re-Load from INI",IDC_BUTTON2,92,225,77,14
+    CTEXT           "Double Click on an item to expand or un-expand it.  When MicXfer is too busy to respond, pause the service, update the INI file and then restart the service.",
+                    IDC_STATIC_TEXT,7,5,334,18
+    PUSHBUTTON      "Edit Selected Item",IDC_BUTTON1,7,204,77,14
+    PUSHBUTTON      "Delete Selected Item",IDC_BUTTON_DELETE,92,204,77,14
+    ICON            IDI_ICON3,IDC_STATIC_IMAGE,268,204,21,20
+    CTEXT           "MicXfer Has These Values",IDC_STATIC_MICXFERSTAT,292,
+                    200,49,37
+    PUSHBUTTON      "Add New Sub-Item",IDC_BUTTON_ADD,177,204,77,14
+    CTEXT           "",IDC_STATIC_INI,7,24,334,8
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 207, 151
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,78,134,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,139,134,50,14
+    EDITTEXT        IDC_EDIT_PATH,7,90,193,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse",IDC_BUTTON_BROWSE,17,134,50,14
+    LTEXT           "Enter full path to directory...",IDC_STATIC_MESSAGE,7,7,
+                    193,78
+    LTEXT           "",IDC_STATIC_MSG,7,110,193,20
+END
+
+IDD_DIALOG_SCHEDULE DIALOG DISCARDABLE  0, 0, 224, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Schedule"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,35,141,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,138,141,50,14
+    LISTBOX         IDC_LIST_SCHEDULE,7,22,48,80,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Schedule",IDC_STATIC,15,13,31,8
+    EDITTEXT        IDC_EDIT_YEAR,97,7,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SPIN_YEAR,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,138,7,10,
+                    14
+    EDITTEXT        IDC_EDIT_MONTH,97,24,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin2",IDC_SPIN_MONTH,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,138,24,
+                    10,14
+    EDITTEXT        IDC_EDIT_DAY,97,41,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin3",IDC_SPIN_DAY,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,138,41,
+                    10,14
+    EDITTEXT        IDC_EDIT_HOURS,97,58,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin4",IDC_SPIN_HOURS,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,138,58,
+                    10,14
+    EDITTEXT        IDC_EDIT_MINUTES,97,74,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin5",IDC_SPIN_MINUTES,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,138,74,10,14
+    EDITTEXT        IDC_EDIT_SECONDS,97,92,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin6",IDC_SPIN_SECONDS,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | 
+                    UDS_NOTHOUSANDS,138,92,10,14
+    RTEXT           "Year",IDC_STATIC,77,9,16,8
+    RTEXT           "Month",IDC_STATIC,72,26,21,8
+    RTEXT           "Day",IDC_STATIC,79,43,14,8
+    RTEXT           "Hours",IDC_STATIC,73,60,20,8
+    RTEXT           "Minutes",IDC_STATIC,67,76,26,8
+    RTEXT           "Seconds",IDC_STATIC,64,94,29,8
+    LISTBOX         IDC_LIST_WEEKDAYS,169,22,48,79,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Weekday",IDC_STATIC,178,13,32,8
+    CTEXT           "",IDC_STATIC_TEXT,7,113,210,16
+END
+
+IDD_DIALOG2 DIALOG DISCARDABLE  0, 0, 126, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,58,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,69,58,50,14
+    EDITTEXT        IDC_EDIT_VALUE,7,37,112,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Enter Value:",IDC_STATIC_MESSAGE,7,7,112,25
+END
+
+IDD_DIALOG3 DIALOG DISCARDABLE  0, 0, 123, 75
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "IP Address"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,54,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,66,54,50,14
+    CONTROL         "IPAddress1",IDC_IPADDRESS1,"SysIPAddress32",WS_TABSTOP,
+                    12,31,100,15
+    LTEXT           "",IDC_STATIC_MSG,7,7,109,19
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,8,0,5
+ PRODUCTVERSION 1,8,0,5
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Configurator for MicXfer Windows service\0"
+            VALUE "CompanyName", "LANS LLC, LANL, N-4 Safeguards and Security Systems\0"
+            VALUE "FileDescription", "MicXferC Application\0"
+            VALUE "FileVersion", "1, 8, 0, 5\0"
+            VALUE "InternalName", "micxferc\0"
+            VALUE "LegalCopyright", "\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "MicXferC.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "MicXfer Configurator Application\0"
+            VALUE "ProductVersion", "1, 8, 0, 5\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 63
+    END
+
+    IDD_TREE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 341
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 239
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 200
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+
+    IDD_DIALOG_SCHEDULE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 217
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 119
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_DIALOG3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 116
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 68
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About MicXferC..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\tree.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,355 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\CullFile.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\CullFile.ico"
+IDI_ICON1               ICON    DISCARDABLE     "res\\icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 217, 78
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About EZ-Copy"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "EZ-Copy Version 1.8.0.7",IDC_STATIC_VERSION,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 1999-2009",IDC_STATIC,40,25,170,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
+    LTEXT           "Written by: David Pelowitz and others\nN-4, uscb@lanl.gov\nLos Alamos National Laboratory",
+                    IDC_STATIC,39,42,171,29
+END
+
+IDD_CULLFILE_DIALOG DIALOGEX 0, 0, 487, 282
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "EZ-Copy"
+CLASS "EZ-CopyClass"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Exit",IDOK,414,252,61,23
+    CONTROL         "List2",IDC_LIST_DIRECTORIES,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,15,15,450,125
+    GROUPBOX        "From - To File Directory Sets",IDC_STATIC,10,3,465,162
+    PUSHBUTTON      "Add Directory",IDC_BUTTON_ADDDIR,17,145,78,14
+    PUSHBUTTON      "Remove Selected",IDC_BUTTON_REMDIR,183,145,78,14,
+                    WS_DISABLED
+    PUSHBUTTON      "Do File Copy",IDC_BUTTON_DOCOPY,18,209,75,24,
+                    WS_DISABLED
+    GROUPBOX        "Dates of Files to Copy or Move",IDC_STATIC,10,165,465,
+                    35
+    RTEXT           "From:\n( > or  =)",IDC_STATIC,15,178,29,17
+    CONTROL         "CustomForm",IDC_CUSTOM_FROM,"SysDateTimePick32",
+                    WS_TABSTOP,50,180,130,14
+    RTEXT           "To:\n( < )",IDC_STATIC,186,178,19,17
+    CONTROL         "CustomForm",IDC_CUSTOM_TO,"SysDateTimePick32",
+                    WS_TABSTOP,209,180,130,14
+    PUSHBUTTON      "Next Month",IDC_BUTTON_MONTHPLUS,345,185,50,14
+    PUSHBUTTON      "Prev. Month",IDC_BUTTON_MONTHMINUS,345,170,50,14
+    CONTROL         "Write results to a log file.",IDC_CHECK_DOLOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,101,222,93,10
+    GROUPBOX        "Copy Activity",IDC_STATIC,10,200,399,75
+    LTEXT           "Ready",IDC_STATIC_NAME,18,235,386,36,SS_SUNKEN
+    CONTROL         "Get Date from Name",IDC_CHECK_DATEFROMNAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,101,209,81,10
+    DEFPUSHBUTTON   "Abort Copy",IDC_BUTTON_ABORT,414,219,61,14,WS_DISABLED
+    RTEXT           "Files Looked At:",IDC_STATIC,191,210,52,8
+    LTEXT           "",IDC_STATIC_LOOKEDAT,244,210,31,8
+    RTEXT           "Files Copied:",IDC_STATIC,202,223,41,8
+    LTEXT           "",IDC_STATIC_COPIED,244,223,31,8
+    COMBOBOX        IDC_COMBO1,271,146,109,78,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Edit Set Names",IDC_BUTTON_EDIT,386,146,78,14
+    PUSHBUTTON      "Edit Selected",IDC_BUTTON_EDITDIR,100,145,78,14,
+                    WS_DISABLED
+    LTEXT           "Path to ZIP:",IDC_STATIC,279,205,39,8
+    LTEXT           "",IDC_STATIC_PATH,280,215,123,20
+    DEFPUSHBUTTON   "Edit path to ZIP",IDC_BUTTON_ZIPPATH,414,203,61,14
+    EDITTEXT        IDC_EDIT_SPAN,440,175,25,14,ES_AUTOHSCROLL | ES_NUMBER
+    RTEXT           "Time Span\n(Months):",IDC_STATIC,400,174,37,18
+    DEFPUSHBUTTON   "Pause Copy",IDC_BUTTON_PAUSE,414,236,61,14,WS_DISABLED
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 337, 138
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Set Names"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Save",IDOK,104,117,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,183,117,50,14
+    RTEXT           "1:",IDC_STATIC,13,29,13,12
+    RTEXT           "2:",IDC_STATIC,13,45,13,12
+    RTEXT           "3:",IDC_STATIC,13,61,13,12
+    RTEXT           "4:",IDC_STATIC,13,77,13,12
+    RTEXT           "5:",IDC_STATIC,13,93,13,12
+    RTEXT           "6:",IDC_STATIC,93,29,13,12
+    RTEXT           "7:",IDC_STATIC,93,45,13,12
+    RTEXT           "8:",IDC_STATIC,93,61,13,12
+    RTEXT           "9:",IDC_STATIC,93,77,13,12
+    RTEXT           "10:",IDC_STATIC,93,93,13,12
+    EDITTEXT        IDC_EDIT1,30,27,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,30,43,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,30,59,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,30,75,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,30,91,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,110,27,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,110,43,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT8,110,59,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT9,110,75,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT10,110,91,53,14,ES_AUTOHSCROLL
+    LTEXT           "Set",IDC_STATIC,16,15,12,8
+    LTEXT           "Set",IDC_STATIC,95,15,12,8
+    LTEXT           "Name",IDC_STATIC,40,15,20,8
+    LTEXT           "Name",IDC_STATIC,117,15,20,8
+    RTEXT           "11:",IDC_STATIC,180,28,13,12
+    RTEXT           "12:",IDC_STATIC,180,44,13,12
+    RTEXT           "13:",IDC_STATIC,180,60,13,12
+    RTEXT           "14:",IDC_STATIC,180,76,13,12
+    RTEXT           "15:",IDC_STATIC,180,92,13,12
+    RTEXT           "16:",IDC_STATIC,260,28,13,12
+    RTEXT           "17:",IDC_STATIC,260,44,13,12
+    RTEXT           "18:",IDC_STATIC,260,60,13,12
+    RTEXT           "19:",IDC_STATIC,260,76,13,12
+    RTEXT           "20:",IDC_STATIC,260,92,13,12
+    EDITTEXT        IDC_EDIT11,197,26,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT12,197,42,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT13,197,58,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT14,197,74,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT15,197,90,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT16,277,26,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT17,277,42,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT18,277,58,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT19,277,74,53,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT20,277,90,53,14,ES_AUTOHSCROLL
+    LTEXT           "Set",IDC_STATIC,183,14,12,8
+    LTEXT           "Set",IDC_STATIC,262,14,12,8
+    LTEXT           "Name",IDC_STATIC,207,14,20,8
+    LTEXT           "Name",IDC_STATIC,284,14,20,8
+END
+
+IDD_DIALOG2 DIALOG DISCARDABLE  0, 0, 232, 233
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,50,212,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,130,212,50,14
+    LTEXT           "FROM Directory",IDC_STATIC,7,7,52,8
+    EDITTEXT        IDC_EDIT1,7,17,162,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse",IDC_BUTTON1,175,17,50,14
+    LTEXT           "TO Directory",IDC_STATIC,7,36,41,8
+    EDITTEXT        IDC_EDIT2,7,47,162,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse",IDC_BUTTON2,175,47,50,14
+    LTEXT           "Include File Types (e.g. *.jpg,*.bin,*.cev):",
+                    IDC_STATIC,7,72,129,8
+    EDITTEXT        IDC_EDIT3,7,83,167,35,ES_AUTOHSCROLL
+    CONTROL         "Include Sub-Directories",IDC_CHECK1,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,152,64,70,19
+    CONTROL         "Copy ALL files in any included ZIP file\n(Bulk UnZip).",
+                    IDC_CHECK2,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | 
+                    WS_TABSTOP,143,142,82,23
+    CONTROL         "Copy file only if it has changed (Archive Bit is on)",
+                    IDC_CHECK3,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | 
+                    WS_TABSTOP,7,143,110,20
+    CTEXT           "To explicitly copy ZIP files, add *.zip to the Include File Types block. For example, use *.zip,*.cev,*.bid.",
+                    IDC_STATIC,7,121,218,20
+    CTEXT           "When Bulk UnZip is checked and copying files with any extension other than .zip all files contained in the zip file will be copied.  When Bulk UnZip is not checked only those files which match the selection criteria will be copied.",
+                    IDC_STATIC,7,169,218,33
+    PUSHBUTTON      "Save File\nTypes As\nDefault",IDC_BUTTON3,177,84,48,33,
+                    BS_MULTILINE
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,8,0,7
+ PRODUCTVERSION 1,8,0,7
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Created by David Pelowitz\0"
+            VALUE "CompanyName", "Los Alamos National Laboratory\0"
+            VALUE "FileDescription", "EZ-Copy File Transfer Utility\0"
+            VALUE "FileVersion", "1, 8, 0, 7\0"
+            VALUE "InternalName", "EZ-Copy\0"
+            VALUE "LegalCopyright", "\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "EZ-Copy.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "EZ-Copy Application\0"
+            VALUE "ProductVersion", "1, 8, 0, 7\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO MOVEABLE PURE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 71
+    END
+
+    IDD_CULLFILE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 475
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 275
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 330
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 131
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 225
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 226
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About EZ-Copy..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\CullFile.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

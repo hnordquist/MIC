@@ -1,0 +1,277 @@
+<HTML>
+	<HEAD>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<TITLE></TITLE>
+		<LINK href="EossReaderStyleSheet.css" type="text/css" rel="stylesheet" media="screen">
+		<LINK href="EossReaderPrintStyleSheet.css" type="text/css" rel="stylesheet" media="print">
+		<SCRIPT language="JavaScript" src="EossIncludes.js"></SCRIPT>
+		<SCRIPT language="JavaScript">
+
+     	function CompletenessAlert()
+		{
+			if (Completeness.innerText != "") return;
+			Completeness.innerText = "Incomplete data.";
+		}
+		function AuthenticityAlert(Message)
+		{
+			if (Authenticity.innerText != "") return;
+			Authenticity.innerText = Message;
+		}
+		function VerifyPages(PageNodes)
+		{
+			if (PageNodes.length == 0)
+			{	// no pages at all
+				CompletenessAlert();
+				return "";
+			}
+			var Verified;
+			var From, To;
+			var PageNode;
+			var EventNode;
+			var Strings = new Array(PageNodes.length);
+			for (var i = 0; i < PageNodes.length; i++)
+			{
+				PageNode = PageNodes.item(i);
+				Verified = PageNode.getAttribute("verified");
+				if (Verified == null)
+				{
+					AuthenticityAlert("Failed.");
+				}
+				if (Verified != "authentic")
+				{
+					AuthenticityAlert("Data is not authentic.");
+				}
+				
+				EventNode = PageNode.selectSingleNode("event[@index='1']");
+				if (EventNode)
+					From = EventNode.getAttribute("date") + " " + EventNode.getAttribute("time");
+				else
+					From = "";
+				To = PageNode.getAttribute("date") + " " + PageNode.getAttribute("time");
+				
+				Strings[i] = From + "|" + To;					
+			}
+			
+			Strings.sort(); // first item now belongs to oldest page, last item to newest page
+			
+			var StringObj = new String(Strings[0]); 
+			var	Splitted = StringObj.split("|");
+			From = Splitted[0];
+			To = Splitted[1];
+			if (From != Initialization.innerText)
+			{	// missing the very first page
+				//alert("Time of first event and initialization do not match");  
+				CompletenessAlert();
+			}
+			for (i = 1; i < Strings.length; i++)
+			{
+				StringObj = new String(Strings[i]); 
+				Splitted = StringObj.split("|");
+				if (To != Splitted[0])
+				{	// found a gap 
+					//alert("Gap found between " + To + " and " + Splitted[0]); 
+					CompletenessAlert();
+				}
+				To = Splitted[1]; 
+			}
+			return To; 
+		}
+		function Transform(KeysetNode, XsltFile)
+		{
+			var StyleSheet = new ActiveXObject("Msxml2.DOMDocument.3.0");
+			StyleSheet.async = false;
+			StyleSheet.resolveExternals = false;
+			StyleSheet.load(XsltFile);
+			// apply the transformation and return the result
+ 			return KeysetNode.transformNode(StyleSheet);
+		}
+		function TimeShift(DateTimeAsString, Deviation)
+		{
+			var S = new String(DateTimeAsString);
+			var Year = S.substr(0, 4);
+			var Month = S.substr(5, 2) - 1;
+			var Day = S.substr(8, 2);
+			var Hours = S.substr(11, 2);
+			var Minutes = S.substr(14, 2);
+			var Seconds = S.substr(17, 2);
+			
+			var D = new Date(Year, Month, Day, Hours, Minutes, Seconds);
+			var T = D.getTime();
+			T += Deviation * 1000;
+			D.setTime(T);
+		
+			Year = D.getFullYear();
+			Month = D.getMonth() + 1;
+			Day = D.getDate();
+			Hours = D.getHours();
+			Minutes = D.getMinutes();
+			Seconds = D.getSeconds();
+			
+			var Result = Year + '-';
+			if (Month < 10) Result += '0';
+			Result += Month + '-';
+			if (Day < 10) Result += '0';
+			Result += Day + ' ';
+			if (Hours < 10) Result += '0';
+			Result += Hours + ':';
+			if (Minutes < 10) Result += '0';
+			Result += Minutes + ':';
+			if (Seconds < 10) Result += '0';
+			Result += Seconds;
+	
+			return Result;	
+		}
+		function window.onload()
+		{
+			try {
+				Inspectors.innerText = ISession.Operator1;
+				if ((ISession.Operator1 != "") && (ISession.Operator2 != ""))
+					Inspectors.innerText += ", ";
+				Inspectors.innerText += ISession.Operator2;
+				
+				var Value = ISession.GetValue("Facility");
+				if (Value)
+					Facility.value = Value;
+					
+				Value = ISession.GetValue("InspectionNumber");
+				if (Value)
+					InspectionNumber.value = Value;
+					
+				Facility.setActive();
+									
+				SealNumber.innerText = ISeal.SerialNumber;
+				
+				var XPath = "eoss/seal[@sn='" + ISeal.SerialNumber+ "']/key[@no='" + ISeal.KeysetNumber + "'][@date='" + ISeal.KeysetDate + "'][@time='" + ISeal.KeysetTime + "']"; 
+				var KeysetNode = IDocument.selectSingleNode(XPath);
+				Initialization.innerText = KeysetNode.getAttribute("date") + " " + KeysetNode.getAttribute("time");
+				XPath = "status/plain";	
+				var StatusNode = KeysetNode.selectSingleNode(XPath);
+				
+				var Volts = StatusNode.selectSingleNode("bat-volts").text;
+				var mAh = StatusNode.selectSingleNode("bat-consumed").text;
+            var Percentage = (2000 - mAh) / 20;
+            if (Percentage < 0) Percentage = 0;
+            if (Volts < 1.8) Percentage = 0;
+ 				BatteryCharge.innerText = Math.round(Percentage) + "%";
+  				
+ 				var XPath = "page/plain[@log='fo']";
+				PageNodes = KeysetNode.selectNodes(XPath);
+				SealDateTime.innerText = VerifyPages(PageNodes);
+				var XPath = "page/plain[@log='sys']";
+				PageNodes = KeysetNode.selectNodes(XPath);
+				var Last = VerifyPages(PageNodes);
+				var Last = 0;
+				if (Last < SealDateTime.innerText)
+					SealDateTime.innerText = Last;
+				
+				ComputerDateTime.innerText = TimeShift(SealDateTime.innerText, ISeal.Deviation);
+				Deviation.innerText = ISeal.Deviation + ' sec';
+					
+				if (Authenticity.innerHTML == "") Authenticity.innerHTML = "OK";
+				if (Completeness.innerHTML == "") Completeness.innerHTML = "OK";
+				
+				if (ISession.GetValue("ShowAll"))
+					Entries.innerHTML = Transform(KeysetNode, "EossReaderSealAndSystemEvents.xslt");
+				else
+					Entries.innerHTML = Transform(KeysetNode, "EossReaderSealEventsOnly.xslt");
+				if (EventTable.rows.length > 0)
+				{
+					// recent entries at the top of the list
+					var i;
+					for (i = 0; i < EventTable.rows.length - 1; i++)
+						EventTable.moveRow(0, EventTable.rows.length - 1 - i);
+				}
+				else
+					Entries.innerText = "There are no items to display."; 					
+ 			}
+			catch (e) {
+				alert(e.message)
+			}			
+		}
+		function Print()
+		{
+			window.print();
+		}
+		function window.onunload()
+		{
+			ISession.SetValue("Facility", Facility.value);
+			ISession.SetValue("InspectionNumber", InspectionNumber.value);
+		}
+		</SCRIPT>
+	</HEAD>
+	<body id="Body">
+		<h1>Inspection Report</span>
+		</h1>
+		<table cellSpacing="0" cellPadding="5" width="100%">
+			<tr class="info">
+				<td>Inspector(s):</td>
+				<td id="Inspectors"></td>
+			</tr>
+			<tr class="info">
+				<td>Facility:</td>
+				<td><input type="text" style="border-style: none" id="Facility" NAME="Facility"></td>
+			</tr>
+			<tr class="info">
+				<td>Inspection Number:</td>
+				<td><input type="text" style="border-style: none" id="InspectionNumber" NAME="InspectionNumber"></td>
+			</tr>
+			<tr class="info">
+				<td>Seal Number:</td>
+				<td id="SealNumber"></td>
+			</tr>
+			<tr class="info">
+				<td>Battery Charge:</td>
+				<td id="BatteryCharge"></td>
+			</tr>
+			<tr class="info">
+				<td>Seal Initialisation:</td>
+				<td id="Initialization"></td>
+			</tr>
+		<!--<tr class="info"> -->
+		<!--	<td>Last Interrogation:</td> -->
+		<!--		<td id="LastInterrogation"></td> -->
+		<!--	</tr> -->
+			<tr class="info">
+				<td>Seal Date/Time:</td>
+				<td id="SealDateTime"></td>
+			</tr>
+			<tr class="info">
+				<td>Computer Date/Time:</td>
+				<td id="ComputerDateTime"></td>
+			</tr>
+			<tr class="info">
+				<td>Deviation:</td>
+				<td id="Deviation"></td>
+			</tr>
+			<tr class="info">
+				<td>Verification of Authenticity:</td>
+				<td id="Authenticity"></td>
+			</tr>
+			<tr class="info">
+				<td>Verification of Completeness:</td>
+				<td id="Completeness"></td>
+			</tr>
+			<tr class="info">
+				<td>Log Entries:</td>
+				<td></td>
+			</tr>
+			<tr class="info">
+				<td colspan="2" id="Entries">
+				</td>
+			</tr>
+			<tr class="info">
+				<td colspan="2">
+					<table cellSpacing="1" cellPadding="5" width="100%">
+						<tr class="menu">
+							<td><input id="LogoffButton" type="button" value="Print" onclick="Print()"/></td>
+						</tr>
+						<tr class="menu">
+							<td align="left"><a href="EossReaderActions.htm">&lt;&lt; Back to Actions</a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br>
+	</body>
+</HTML>

@@ -1,0 +1,411 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\WatchCom.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\WatchCom.ico"
+IDI_ICON1               ICON    DISCARDABLE     "res\\icon1.ico"
+IDI_ICON2               ICON    DISCARDABLE     "res\\icon2.ico"
+IDI_ICON3               ICON    DISCARDABLE     "res\\icon3.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 217, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About WatchCom"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "WatchCom Version 2.3.0.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006, Los Alamos National Laboratory",
+                    IDC_STATIC,40,25,170,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
+    LTEXT           "Written by David Pelowitz, N1, pelowitz@lanl.gov",
+                    IDC_STATIC,40,40,156,8
+END
+
+IDD_WATCHCOM_DIALOG DIALOGEX 0, 0, 352, 231
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "WatchCom"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "Com A: Not set.",IDC_STATIC_COMA,4,2,157,11,SS_NOTIFY | 
+                    SS_SUNKEN | NOT WS_GROUP,WS_EX_TRANSPARENT
+    CTEXT           "Com B Not set.",IDC_STATIC_COMB,178,2,157,11,SS_NOTIFY | 
+                    SS_SUNKEN | NOT WS_GROUP
+    CONTROL         "",IDC_RICHEDIT1,"RICHEDIT",ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_BORDER | WS_VSCROLL | WS_HSCROLL,5,41,340,183
+    CTEXT           "Com C Not set.",IDC_STATIC_COMC,4,16,157,11,SS_NOTIFY | 
+                    SS_SUNKEN | NOT WS_GROUP
+    CTEXT           "Com D Not set.",IDC_STATIC_COMD,178,16,157,11,SS_NOTIFY | 
+                    SS_SUNKEN | NOT WS_GROUP
+    PUSHBUTTON      "W",IDC_BUTTON1,162,2,16,11,BS_ICON
+    PUSHBUTTON      "W",IDC_BUTTON2,335,2,16,11,BS_ICON
+    PUSHBUTTON      "W",IDC_BUTTON3,162,16,16,11,BS_ICON
+    PUSHBUTTON      "W",IDC_BUTTON4,335,15,16,11,BS_ICON
+    CONTROL         "Pause Logging",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,3,29,63,10
+    EDITTEXT        IDC_EDIT1,81,29,40,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Log Sequence Number (auto increment on un-pause)",
+                    IDC_STATIC,125,31,168,8
+END
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 336, 281
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Port Selection"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_DESTINATIONNAME_EDIT,9,23,168,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BUTTON_BROWSE,180,23,50,14
+    EDITTEXT        IDC_EDIT_LONGNAME,9,50,105,14,ES_AUTOHSCROLL
+    CONTROL         "300",IDC_RADIO_BAUD300,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,17,147,28,10
+    CONTROL         "600",IDC_RADIO_BAUD600,"Button",BS_AUTORADIOBUTTON,17,
+                    162,28,10
+    CONTROL         "1200",IDC_RADIO_BAUD1200,"Button",BS_AUTORADIOBUTTON,17,
+                    177,32,10
+    CONTROL         "1800",IDC_RADIO_BAUD1800,"Button",BS_AUTORADIOBUTTON,17,
+                    192,32,10
+    CONTROL         "2400",IDC_RADIO_BAUD2400,"Button",BS_AUTORADIOBUTTON,17,
+                    207,32,10
+    CONTROL         "4800",IDC_RADIO_BAUD4800,"Button",BS_AUTORADIOBUTTON,17,
+                    222,32,10
+    CONTROL         "7200",IDC_RADIO_BAUD7200,"Button",BS_AUTORADIOBUTTON,17,
+                    237,32,10
+    CONTROL         "9600",IDC_RADIO_BAUD9600,"Button",BS_AUTORADIOBUTTON,17,
+                    252,32,10
+    CONTROL         "14400",IDC_RADIO_BAUD14400,"Button",BS_AUTORADIOBUTTON,
+                    57,147,36,10
+    CONTROL         "19200",IDC_RADIO_BAUD19200,"Button",BS_AUTORADIOBUTTON,
+                    57,162,36,10
+    CONTROL         "38400",IDC_RADIO_BAUD38400,"Button",BS_AUTORADIOBUTTON,
+                    57,177,36,10
+    CONTROL         "56000",IDC_RADIO_BAUD56000,"Button",BS_AUTORADIOBUTTON,
+                    57,192,36,10
+    CONTROL         "57600",IDC_RADIO_BAUD57600,"Button",BS_AUTORADIOBUTTON,
+                    57,207,36,10
+    CONTROL         "115200",IDC_RADIO_BAUD115200,"Button",
+                    BS_AUTORADIOBUTTON,57,222,40,10
+    CONTROL         "128000",IDC_RADIO_BAUD128000,"Button",
+                    BS_AUTORADIOBUTTON,57,237,40,10
+    CONTROL         "5",IDC_RADIO15,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    117,147,20,10
+    CONTROL         "6",IDC_RADIO16,"Button",BS_AUTORADIOBUTTON,117,158,20,
+                    10
+    CONTROL         "7",IDC_RADIO17,"Button",BS_AUTORADIOBUTTON,117,169,20,
+                    10
+    CONTROL         "8",IDC_RADIO18,"Button",BS_AUTORADIOBUTTON,117,180,20,
+                    10
+    CONTROL         "16",IDC_RADIO19,"Button",BS_AUTORADIOBUTTON,117,191,24,
+                    10
+    CONTROL         "1",IDC_RADIO20,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    117,225,20,10
+    CONTROL         "1.5",IDC_RADIO21,"Button",BS_AUTORADIOBUTTON,117,237,26,
+                    10
+    CONTROL         "2",IDC_RADIO22,"Button",BS_AUTORADIOBUTTON,117,249,20,
+                    10
+    LISTBOX         IDC_LIST1,243,18,70,98,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Odd",IDC_RADIO23,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    165,151,29,10
+    CONTROL         "Even",IDC_RADIO24,"Button",BS_AUTORADIOBUTTON,165,164,
+                    33,10
+    CONTROL         "Mark",IDC_RADIO25,"Button",BS_AUTORADIOBUTTON,165,177,
+                    32,10
+    CONTROL         "None",IDC_RADIO26,"Button",BS_AUTORADIOBUTTON,165,190,
+                    33,10
+    DEFPUSHBUTTON   "OK",IDOK,212,250,55,14
+    PUSHBUTTON      "Cancel",IDCANCEL,272,250,55,14
+    GROUPBOX        "Baud",IDC_STATIC,12,137,95,128
+    GROUPBOX        "Data Bits",IDC_STATIC,112,137,45,70
+    GROUPBOX        "Stop Bits",IDC_STATIC,112,215,45,50
+    GROUPBOX        "Available Ports",IDC_STATIC,239,7,80,115
+    GROUPBOX        "Parity",IDC_STATIC,163,137,44,70
+    GROUPBOX        "Log File",IDC_STATIC,7,7,227,115
+    LTEXT           "Destination",IDC_STATIC,9,15,36,8
+    LTEXT           "Name",IDC_STATIC,9,40,20,8
+    LTEXT           "=>",IDC_STATIC,116,53,9,8
+    LTEXT           "",IDC_STATIC_EXAMPLE,126,50,105,14,SS_SUNKEN
+    LTEXT           "%P = NNN (serial port)\nNNN.NNN.NNN.NNN (tcp port)",
+                    IDC_STATIC,12,67,102,18
+    LTEXT           "%y = YYYY",IDC_STATIC,12,85,36,8
+    LTEXT           "%m = MM",IDC_STATIC,12,94,36,8
+    LTEXT           "%d = DD",IDC_STATIC,12,103,36,8
+    LTEXT           "%H = HH",IDC_STATIC,55,85,36,8
+    LTEXT           "%M = MM",IDC_STATIC,55,94,37,8
+    LTEXT           "%S = SS",IDC_STATIC,55,103,28,8
+    LTEXT           "Example: AA%P_%y%m%d_%H%M%S\r=>\rAA002_20030527_135756",
+                    IDC_STATIC,125,83,101,35
+    LTEXT           "DON'T USE: \\ / ? * : ; > < """,IDC_STATIC,125,68,102,8
+    GROUPBOX        "Serial",IDC_STATIC,7,125,204,148
+    GROUPBOX        "TCP/IP",IDC_STATIC,214,125,106,83
+    CONTROL         "IPAddress1",IDC_IPADDRESS1,"SysIPAddress32",WS_TABSTOP,
+                    217,153,100,15
+    LTEXT           "IP Address",IDC_STATIC,219,141,35,8
+    LTEXT           "TCP Port Number",IDC_STATIC,219,176,56,8
+    EDITTEXT        IDC_EDIT_TCPPORTNUMBER,217,187,40,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    PUSHBUTTON      "Deactivate",IDC_BUTTON_DEACTIVATE,246,228,50,14
+    LTEXT           "%s = SSSS sequence number",IDC_STATIC,12,112,95,8
+END
+
+IDD_DATAWATCH_DIALOG DIALOGEX 0, 0, 508, 330
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU | WS_THICKFRAME
+CAPTION "Data Watch"
+FONT 8, "MS Sans Serif"
+BEGIN
+    RTEXT           "",IDC_CHART1V_MAX,35,18,30,8
+    RTEXT           "",IDC_CHART1V_MIN,35,31,30,8
+    RTEXT           "",IDC_CHART2V_MAX,35,64,30,8
+    RTEXT           "",IDC_CHART2V_MIN,36,78,30,8
+    RTEXT           "",IDC_CHART3V_MAX,35,125,30,8
+    RTEXT           "",IDC_CHART3V_MIN,35,138,30,8
+    RTEXT           "",IDC_CHART1H_MAX,93,50,82,8
+    LTEXT           "",IDC_CHART1H_MIN,211,47,82,8
+    RTEXT           "",IDC_CHART2H_MAX,93,63,82,8
+    LTEXT           "",IDC_CHART2H_MIN,211,63,82,8
+    RTEXT           "",IDC_CHART3H_MAX,95,78,82,8
+    LTEXT           "",IDC_CHART3H_MIN,212,78,82,8
+    CTEXT           "",IDC_STATIC_CHART1,320,103,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART2,330,111,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART3,339,120,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART4,348,129,8,8,0,WS_EX_TRANSPARENT
+    CONTROL         "Lock Scrolling Together (1 hour displayed)",
+                    IDC_CHECK_LOCKED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    167,265,201,10
+    CTEXT           "",IDC_STATIC_CHART1B,426,147,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART2B,436,155,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART3B,445,164,8,8,0,WS_EX_TRANSPARENT
+    RTEXT           "",IDC_CHART4V_MAX,30,161,30,8
+    RTEXT           "",IDC_CHART4V_MIN,30,174,30,8
+    RTEXT           "",IDC_CHART5V_MAX,28,192,30,8
+    RTEXT           "",IDC_CHART5V_MIN,28,205,30,8
+    RTEXT           "",IDC_CHART4H_MAX,95,102,82,8
+    RTEXT           "",IDC_CHART5H_MAX,100,125,82,8
+    LTEXT           "",IDC_CHART4H_MIN,211,103,82,8
+    LTEXT           "",IDC_CHART5H_MIN,209,126,82,8
+    CTEXT           "",IDC_STATIC_CHART5,357,138,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART4B,454,173,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART5B,463,182,8,8,0,WS_EX_TRANSPARENT
+    PUSHBUTTON      "Zoom In",IDC_BUTTON_EXPAND,1,315,50,14
+    PUSHBUTTON      "Zoom Out",IDC_BUTTON_CONTRACT,458,315,50,14
+    CTEXT           "",IDC_STATIC_CHART6,367,146,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART7,376,155,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART8,385,164,8,8,0,WS_EX_TRANSPARENT
+    LTEXT           "",IDC_CHART6H_MIN,219,135,82,8
+    LTEXT           "",IDC_CHART7H_MIN,228,143,82,8
+    LTEXT           "",IDC_CHART8H_MIN,237,152,82,8
+    RTEXT           "",IDC_CHART6H_MAX,109,134,82,8
+    RTEXT           "",IDC_CHART7H_MAX,119,142,82,8
+    RTEXT           "",IDC_CHART8H_MAX,128,151,82,8
+    RTEXT           "",IDC_CHART6V_MAX,37,201,30,8
+    RTEXT           "",IDC_CHART6V_MIN,37,214,30,8
+    RTEXT           "",IDC_CHART7V_MAX,47,209,30,8
+    RTEXT           "",IDC_CHART7V_MIN,47,222,30,8
+    RTEXT           "",IDC_CHART8V_MAX,56,218,30,8
+    RTEXT           "",IDC_CHART8V_MIN,56,231,30,8
+    CTEXT           "",IDC_STATIC_CHART6B,473,191,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART7B,482,199,8,8,0,WS_EX_TRANSPARENT
+    CTEXT           "",IDC_STATIC_CHART8B,491,208,8,8,0,WS_EX_TRANSPARENT
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,3,0,0
+ PRODUCTVERSION 2,3,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "LANL\0"
+            VALUE "FileDescription", "WatchCom MFC Application\0"
+            VALUE "FileVersion", "2, 3, 0, 0\0"
+            VALUE "InternalName", "WatchCom\0"
+            VALUE "LegalCopyright", "Copyright (C) 1999-2007\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WatchCom.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WatchCom Application\0"
+            VALUE "ProductVersion", "2, 3, 0, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_WATCHCOM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 345
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 224
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 329
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 274
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR_HAND         CURSOR  DISCARDABLE     "res\\cursor1.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About WatchCom..."
+    IDS_COMA                "Config Com A..."
+    IDS_COMB                "Config Com B..."
+    IDS_CLEARLOG            "Clear Log Window"
+    IDS_COMC                "Config Com C..."
+    IDS_COMD                "Config Com D..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\WatchCom.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

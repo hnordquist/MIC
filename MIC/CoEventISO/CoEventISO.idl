@@ -1,0 +1,27 @@
+// CoEventISO.idl : IDL source for CoEventISO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoEventISO.tlb) and marshalling code.
+
+#include "../Interfaces/IISO.idl"
+
+[
+	uuid(ED7CCC69-E412-45DE-BFC3-5FC209E24592),
+	version(1.0),
+	helpstring("CoEventISO 1.0 Type Library")
+]
+library COEVENTISOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(F7A55698-ED3F-483B-9940-E0C9D4C42386),
+		helpstring("EventISO Class")
+	]
+	coclass EventISO
+	{
+		[default] interface IISO;
+	};
+};

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<LINK href="EossReaderStyleSheet.css" type="text/css" rel="stylesheet" media="screen">
+		<LINK href="EossReaderPrintStyleSheet.css" type="text/css" rel="stylesheet" media="print">
+		</LINK>
+		<SCRIPT language="JavaScript" src="EossIncludes.js"></SCRIPT>
+		<SCRIPT language="JavaScript">
+			function window.onload() 
+			{
+				try {
+					// complete the caption			
+					SerialNumber.innerText = ISeal.SerialNumber;
+					error.innerHTML = ISeal.Error;
+					var Message = ISeal.Reason;
+					//if ((Message == "Crypto token error.") && ISession.Expert)
+					if (ISession.Expert)
+					{
+						Message += "<br><small><a href='EossReaderEraseKeyset.htm'>&gt;&gt; Key-set lost?</a></small>"
+					}
+					if (Message == "Access denied. Authorization failed.")
+					{
+						if (!ISeal.LoggedOn)
+						{
+							Message += "<br> The Key-set has been changed or erased.";
+							Exit.innerHTML = "<a href='EossReaderSeal.htm'>&lt;&lt; Re-logon</a>";
+						}
+					}
+					reason.innerHTML = Message;
+				}
+				catch (e) {
+					window.location.href ="EossReaderBlank.htm";
+				}
+			}
+		</SCRIPT>
+	</head>
+	<body>
+		<h1 class="errorhead">EOSS S/N <span id="SerialNumber"></span>
+		</h1>
+		<table cellSpacing="0" cellPadding="0" width="100%">
+			<tr>
+				<td width="5" height="5"><img src="ulcr.gif"></td>
+				<td class="errorcaption"></td>
+				<td width="5" height="5"><img src="urcr.gif"></td>
+			</tr>
+			<tr class="errorcaption">
+				<td width="5"></td>
+				<td>Error</td>
+				<td width="5"></td>
+			</tr>
+		</table>
+		<table class="errorframe" cellSpacing="0" cellPadding="5" width="100%">
+			<tr class="info">
+				<td width="20"></td>
+				<td>
+					<p><b><span id="error"></span></b></p>
+					<p><span id="reason"></span></p>
+				</td>
+				<td width="20"></td>
+			</tr>
+			<tr class="info">
+				<td colspan="3">
+					<table cellSpacing="1" cellPadding="5" width="100%">
+						<tr class="menu">
+							<td id="Exit"><a href="JavaScript:history.back(1)">&lt;&lt; Retry</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+HKCR
+{
+	CoPSRISO.PSRISO.1 = s 'PSRISO Class'
+	{
+		CLSID = s '{07FCAEB4-073A-40a2-87FD-351AE0861221}'
+	}
+	CoPSRISO.PSRISO = s 'PSRISO Class'
+	{
+		CLSID = s '{07FCAEB4-073A-40a2-87FD-351AE0861221}'
+		CurVer = s 'CoPSRISO.PSRISO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {07FCAEB4-073A-40a2-87FD-351AE0861221} = s 'PSRISO Class'
+		{
+			ProgID = s 'CoPSRISO.PSRISO.1'
+			VersionIndependentProgID = s 'CoPSRISO.PSRISO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{FC64E5D5-1A8A-49b5-9478-8EF1958EE319}'
+		}
+	}
+}

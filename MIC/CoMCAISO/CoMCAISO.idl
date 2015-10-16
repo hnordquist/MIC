@@ -1,0 +1,30 @@
+// CoMCAISO.idl : IDL source for CoMCAISO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoMCAISO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/IISO.idl"
+
+[
+	uuid(B94956E1-E605-4A13-B05E-FD3A92627FC3),
+	version(1.0),
+	helpstring("CoMCAISO 1.0 Type Library")
+]
+library COMCAISOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(462A7ED9-50F6-4208-BE1F-CD5A66CD1F22),
+		helpstring("MCAISO Class")
+	]
+	coclass MCAISO
+	{
+		[default] interface IISO;
+	};
+};

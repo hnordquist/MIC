@@ -1,0 +1,30 @@
+// CoDSPECISO.idl : IDL source for CoDSPECISO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoDSPECISO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/IISO.idl"
+
+[
+	uuid(B5D835F6-7ADF-4BB7-88D5-73E27CA89580),
+	version(1.0),
+	helpstring("CoDSPECISO 1.0 Type Library")
+]
+library CODSPECISOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(6AC4B463-A2F3-408A-B77D-725E67AF18B8),
+		helpstring("DSPECISO Class")
+	]
+	coclass DSPECISO
+	{
+		[default] interface IISO;
+	};
+};

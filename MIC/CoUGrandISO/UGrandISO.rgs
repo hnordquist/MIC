@@ -1,0 +1,26 @@
+HKCR
+{
+	CoUGrandISO.UGrandISO.1 = s 'UGrandISO Class'
+	{
+		CLSID = s '{C09F2D2B-3642-4c1c-B1FC-ADB3C2B9444C}'
+	}
+	CoUGrandISO.UGrandISO = s 'UGrandISO Class'
+	{
+		CLSID = s '{C09F2D2B-3642-4c1c-B1FC-ADB3C2B9444C}'
+		CurVer = s 'CoUGrandISO.UGrandISO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {C09F2D2B-3642-4c1c-B1FC-ADB3C2B9444C} = s 'UGrandISO Class'
+		{
+			ProgID = s 'CoUGrandISO.UGrandISO.1'
+			VersionIndependentProgID = s 'CoUGrandISO.UGrandISO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{156F5313-9375-449b-B524-96C4F7890390}'
+		}
+	}
+}

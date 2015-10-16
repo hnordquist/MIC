@@ -1,0 +1,30 @@
+// CoJSRISO.idl : IDL source for CoJSRISO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoJSRISO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/IISO.idl"
+
+[
+	uuid(ACEDAC19-2189-48F9-B85C-6C7C8C8AA4A8),
+	version(1.0),
+	helpstring("CoJSRISO 1.0 Type Library")
+]
+library COJSRISOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(6F3174BA-050C-488A-93E6-8ACC8F8E65EC),
+		helpstring("JSRISO Class")
+	]
+	coclass JSRISO
+	{
+		[default] interface IISO;
+	};
+};

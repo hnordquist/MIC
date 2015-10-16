@@ -1,0 +1,296 @@
+<HTML>
+	<HEAD>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<TITLE></TITLE>
+		<LINK href="EossReaderStyleSheet.css" type="text/css" rel="stylesheet" media="screen">
+		<LINK href="EossReaderPrintStyleSheet.css" type="text/css" rel="stylesheet" media="print">
+		<SCRIPT language="JavaScript" src="EossIncludes.js"></SCRIPT>
+		<SCRIPT language="JavaScript">
+		var KeysetNode;
+		var SystemEventsNew;
+		var SealWireEventsNew;
+		function window.onload()
+		{
+			try {
+				// caption
+				SerialNumber.innerText = ISeal.SerialNumber;
+				
+				// initialization time					
+				var XPath = "//eoss/seal[@sn='" + ISeal.SerialNumber+ "']/key[@no='" + ISeal.KeysetNumber + "'][@date='" + ISeal.KeysetDate + "'][@time='" + ISeal.KeysetTime + "']"; 
+				KeysetNode = IDocument.selectSingleNode(XPath);
+				Keyset.innerText = KeysetNode.getAttribute("no");
+				Initialization.innerText = KeysetNode.getAttribute("date") + " " + KeysetNode.getAttribute("time");
+				
+				// communicate
+				
+				try {
+					Body.style.cursor = "wait";
+	
+					ISeal.GetLogInfo();
+
+					var Events = ISeal.SealEvents - 1;
+					if (!(ISeal.ExStatusFlags & 0x03)) Events--;
+					if (Events < 0) Events = 0;
+					SealEvents.innerHTML = Events;
+					SealLogRead = EntriesInDocument("fo") - DummySealEvents();
+					SealWireEventsNew = Events - SealLogRead;
+					if (SealWireEventsNew > 0)
+                  SealEvents.innerHTML += " (<b>" + SealWireEventsNew + " new</b>)"
+                  
+					Events = ISeal.SystemEvents;
+					SystemEvents.innerHTML = Events;
+					SystemLogRead = EntriesInDocument("sys");
+					SystemEventsNew = Events - SystemLogRead;
+					if (SystemEventsNew > 0)
+                  SystemEvents.innerHTML += " (<b>" + SystemEventsNew + " new</b>)"
+               
+               // read log entries   
+               ISession.Canceled;	// clear by reading
+
+					ISeal.Readout(SealWireEventsNew, SystemEventsNew, 0);
+					
+               Body.style.cursor = "default";
+
+					if (ISession.Canceled)
+						window.location.href ="EossReaderActions.htm";
+				}
+				catch (e) {
+					window.location.href ="EossReaderError.htm";
+				}      
+                     
+				// display                
+
+				var XPath = "page/plain[@log='fo']";
+				PageNodes = KeysetNode.selectNodes(XPath);
+				LastReadout.innerText = VerifyPages(PageNodes);
+				var XPath = "page/plain[@log='sys']";
+				PageNodes = KeysetNode.selectNodes(XPath);
+				var Last = VerifyPages(PageNodes);
+				var Last = 0;
+				if (Last < LastReadout.innerText)
+					LastReadout.innerText = Last;
+				
+				if (Authenticity.innerHTML == "") Authenticity.innerHTML = "OK";
+				if (Completeness.innerHTML == "") Completeness.innerHTML = "OK";
+				
+				ShowEvents();
+				
+	         Body.style.cursor = "default";
+
+			}
+			catch (e) {
+				window.location.href ="EossReaderBlank.htm";
+			}
+		}
+		
+		function EntriesInDocument(Log)
+		{
+			var XPath = "//eoss/seal[@sn='" + ISeal.SerialNumber+ "']/key[@no='" + ISeal.KeysetNumber + "'][@date='" + ISeal.KeysetDate + "'][@time='" + ISeal.KeysetTime + "']/page/plain[@log='" + Log + "']/event";
+			var NodeList = IDocument.selectNodes(XPath);
+			return NodeList.length;
+		}
+		function DummySealEvents()
+		{
+			var XPath = "//eoss/seal[@sn='" + ISeal.SerialNumber+ "']/key[@no='" + ISeal.KeysetNumber + "'][@date='" + ISeal.KeysetDate + "'][@time='" + ISeal.KeysetTime + "']/page/plain[@log='fo']/event[@date='" + ISeal.KeysetDate + "'][@time='" + ISeal.KeysetTime + "']";
+			var NodeList = IDocument.selectNodes(XPath);
+			return NodeList.length;
+		}
+		function CompletenessAlert()
+		{
+			if (Completeness.innerText != "") return;
+			Completeness.innerText = "Incomplete data.";
+			Completeness.style.color = "crimson";
+		}
+		function AuthenticityAlert(Message)
+		{
+			if (Authenticity.innerText != "") return;
+			Authenticity.innerText = Message;
+			Authenticity.style.color = "crimson";
+		}
+		function VerifyPages(PageNodes)
+		{
+			if (PageNodes.length == 0)
+			{	// no pages at all
+				CompletenessAlert();
+				return "";
+			}
+			var Verified;
+			var From, To;
+			var PageNode;
+			var EventNode;
+			var Strings = new Array(PageNodes.length);
+			for (var i = 0; i < PageNodes.length; i++)
+			{
+				PageNode = PageNodes.item(i);
+				Verified = PageNode.getAttribute("verified");
+				if (Verified == null)
+				{
+					AuthenticityAlert("Failed.");
+				}
+				if (Verified != "authentic")
+				{
+					AuthenticityAlert("Data is not authentic.");
+				}
+				
+				EventNode = PageNode.selectSingleNode("event[@index='1']");
+				if (EventNode)
+					From = EventNode.getAttribute("date") + " " + EventNode.getAttribute("time");
+				else
+					From = "";
+				To = PageNode.getAttribute("date") + " " + PageNode.getAttribute("time");
+				
+				Strings[i] = From + "|" + To;					
+			}
+			
+			Strings.sort(); // first item now belongs to oldest page, last item to newest page
+			
+			var StringObj = new String(Strings[0]); 
+			var	Splitted = StringObj.split("|");
+			From = Splitted[0];
+			To = Splitted[1];
+			if (From != Initialization.innerText)
+			{	// missing the very first page
+				//alert("Time of first event and initialization do not match");  
+				CompletenessAlert();
+			}
+			for (i = 1; i < Strings.length; i++)
+			{
+				StringObj = new String(Strings[i]); 
+				Splitted = StringObj.split("|");
+				if (To != Splitted[0])
+				{	// found a gap 
+					//alert("Gap found between " + To + " and " + Splitted[0]); 
+					CompletenessAlert();
+				}
+				To = Splitted[1]; 
+			}
+			return To; 
+		}
+		function Transform(KeysetNode, XsltFile)
+		{
+			var StyleSheet = new ActiveXObject("Msxml2.DOMDocument.3.0");
+			StyleSheet.async = false;
+			StyleSheet.resolveExternals = false;
+			StyleSheet.load(XsltFile);
+			// apply the transformation and return the result
+ 			return KeysetNode.transformNode(StyleSheet);
+		}
+		function ShowEvents()
+		{
+			var NewEvents;
+			if (SelectionSealWireOnly.checked)
+			{
+				// only openings and closings of the seal wire
+				NewEvents = SealWireEventsNew;
+				Entries.innerHTML = Transform(KeysetNode, "EossReaderSealEventsOnly.xslt");
+				ISession.SetValue("ShowAll", 0);
+			}
+			else
+			{
+				// all log entries
+				NewEvents = SealWireEventsNew + SystemEventsNew;
+				Entries.innerHTML = Transform(KeysetNode, "EossReaderSealAndSystemEvents.xslt");
+				ISession.SetValue("ShowAll", 1);
+			}
+			if (EventTable.rows.length > 0)
+			{
+				// recent entries at the top of the list
+				var i;
+				for (i = 0; i < EventTable.rows.length - 1; i++)
+					EventTable.moveRow(0, EventTable.rows.length - 1 - i);
+				
+				for (i = 0; i < NewEvents; i++)
+				{
+					var Cell = EventTable.rows(i).cells(1).innerHTML;
+					Cell = "<b>" + Cell + "</b>";
+					EventTable.rows(i).cells(1).innerHTML = Cell;
+					var Cell = EventTable.rows(i).cells(2).innerHTML;
+					Cell = "<b>" + Cell + "</b>";
+					EventTable.rows(i).cells(2).innerHTML = Cell;
+				}
+			}
+			else
+				Entries.innerText = "There are no items to display.";
+		}
+
+		</SCRIPT>
+	</HEAD>
+	<body id="Body">
+		<h1 id="Header">EOSS S/N <span id="SerialNumber"></span>
+		</h1>
+		<table cellSpacing="0" cellPadding="0" width="100%">
+			<tr>
+				<td class="corner" width="5" height="5"><img src="ulsb.gif"></td>
+				<td class="windowcaption"></td>
+				<td class="corner" width="5" height="5"><img src="ursb.gif"></td>
+			</tr>
+			<tr class="windowcaption">
+				<td width="5"></td>
+				<td>Event Log Entries</td>
+				<td width="5"></td>
+			</tr>
+		</table>
+		<table class="windowframe" cellSpacing="0" cellPadding="5" width="100%">
+			<tr class="info">
+				<td>Key-set number:</td>
+				<td id="Keyset"></td>
+			</tr>
+			<tr class="info">
+				<td>Seal initialization:</td>
+				<td id="Initialization"></td>
+			</tr>
+			<tr class="info">
+				<td>Last interrogation:</td>
+				<td id="LastReadout"></td>
+			</tr>
+			<tr class="info">
+				<td>Seal wire events:</td>
+				<td id="SealEvents"></td>
+			</tr>
+			<tr class="info">
+				<td>Other events:</td>
+				<td id="SystemEvents"></td>
+			</tr>
+			<tr class="info">
+				<td>Verification of authenticity:</td>
+				<td id="Authenticity" style="font-weight=bold"></td>
+			</tr>
+			<tr class="info">
+				<td>Verification of completeness:</td>
+				<td id="Completeness" style="font-weight=bold"></td>
+			</tr>
+			<tr class="info">
+				<td>Log entries:</td>
+				<td></td>
+			</tr>
+			<tr class="info">
+				<td colspan="2">
+					<table cellSpacing="1" cellPadding="5" width="100%">
+						<tr class="menu">
+							<td>
+				&nbsp;&nbsp;&nbsp;<INPUT type="radio" name="Selection" id="SelectionAll" onclick="ShowEvents()" CHECKED VALUE="SelectionAll">Show all events</INPUT>
+				&nbsp;&nbsp;&nbsp;<INPUT type="radio" name="Selection" id="SelectionSealWireOnly" onclick="ShowEvents()" VALUE="SelectionSealWireOnly">Only seal wire events</INPUT>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="info">
+				<td colspan="2" id="Entries">
+				Please wait...
+				</td>
+			</tr>
+			<tr class="info">
+				<td colspan="2">
+					<table cellSpacing="1" cellPadding="5" width="100%">
+						<tr class="menu">
+							<td align="left"><a href="EossReaderActions.htm">&lt;&lt; Back to Actions</a></td>
+							<td align="right"><a href="EossReaderInspectionReport.htm">Printable Report &gt;&gt; </a></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br>
+	</body>
+</HTML>

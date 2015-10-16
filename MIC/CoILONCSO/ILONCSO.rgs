@@ -1,0 +1,26 @@
+HKCR
+{
+	CoILONCSO.ILONCSO.1 = s 'ILONCSO Class'
+	{
+		CLSID = s '{AEE74781-06DC-4928-8E8F-D1E281CF27AD}'
+	}
+	CoILONCSO.ILONCSO = s 'ILONCSO Class'
+	{
+		CLSID = s '{AEE74781-06DC-4928-8E8F-D1E281CF27AD}'
+		CurVer = s 'CoILONCSO.ILONCSO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {AEE74781-06DC-4928-8E8F-D1E281CF27AD} = s 'ILONCSO Class'
+		{
+			ProgID = s 'CoILONCSO.ILONCSO.1'
+			VersionIndependentProgID = s 'CoILONCSO.ILONCSO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{973132C6-2A0B-44DD-93DC-7A8869F4ADBE}'
+		}
+	}
+}

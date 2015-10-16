@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<title></title>
+		<LINK href="EossReaderStyleSheet.css" type="text/css" rel="stylesheet">
+		</LINK>
+		<SCRIPT language="JavaScript" src="EossIncludes.js"></SCRIPT>
+		<SCRIPT language="JavaScript">
+			function window.onload() 
+			{
+				try {
+					// complete the caption			
+					SerialNumber.innerText = ISeal.SerialNumber;
+				}
+				catch (e) {
+					window.location.href ="EossReaderBlank.htm";
+				}				
+			}
+		</SCRIPT>
+	</head>
+	<body>
+		<h1 class="confirmationhead">EOSS S/N <span id="SerialNumber"></span>
+		</h1>
+		<table cellSpacing="0" cellPadding="0" width="100%">
+			<tr>
+				<td width="5" height="5"><img src="ulyg.gif"></td>
+				<td class="confirmationcaption"></td>
+				<td width="5" height="5"><img src="uryg.gif"></td>
+			</tr>
+			<tr class="confirmationcaption">
+				<td width="5"></td>
+				<td>Seal Initialization</td>
+				<td width="5"></td>
+			</tr>
+		</table>
+		<table class="confirmationframe" cellSpacing="0" cellPadding="5" width="100%">
+			<tr class="info">
+				<td width="20"></td>
+				<td>
+					<p><b>Confirmation</b></p>
+					<p>The seal has been successfully initialized.</p>
+				</td>
+				<td width="20"></td>
+			</tr>
+			<tr class="info">
+				<td colspan="3">
+					<table cellSpacing="1" cellPadding="5" width="100%" ID="Table1">
+						<tr class="menu">
+							<td><a href="EossReaderActions.htm">&lt;&lt; Back to Actions</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

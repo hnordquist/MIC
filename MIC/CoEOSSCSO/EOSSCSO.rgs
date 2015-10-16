@@ -1,0 +1,26 @@
+HKCR
+{
+	CoEOSSCSO.EOSSCSO.1 = s 'EOSSCSO Class'
+	{
+		CLSID = s '{6710F5EB-794B-485b-945E-345EBBA3FFC3}'
+	}
+	CoEOSSCSO.EOSSCSO = s 'EOSSCSO Class'
+	{
+		CLSID = s '{6710F5EB-794B-485b-945E-345EBBA3FFC3}'
+		CurVer = s 'CoEOSSCSO.EOSSCSO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {6710F5EB-794B-485b-945E-345EBBA3FFC3} = s 'EOSSCSO Class'
+		{
+			ProgID = s 'CoEOSSCSO.EOSSCSO.1'
+			VersionIndependentProgID = s 'CoEOSSCSO.EOSSCSO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{81AA1A65-55A7-41c4-B164-B03F7DFFD83E}'
+		}
+	}
+}

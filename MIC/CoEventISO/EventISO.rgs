@@ -1,0 +1,26 @@
+HKCR
+{
+	CoEventISO.EventISO.1 = s 'EventISO Class'
+	{
+		CLSID = s '{F7A55698-ED3F-483B-9940-E0C9D4C42386}'
+	}
+	CoEventISO.EventISO = s 'EventISO Class'
+	{
+		CLSID = s '{F7A55698-ED3F-483B-9940-E0C9D4C42386}'
+		CurVer = s 'CoEventISO.EventISO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F7A55698-ED3F-483B-9940-E0C9D4C42386} = s 'EventISO Class'
+		{
+			ProgID = s 'CoEventISO.EventISO.1'
+			VersionIndependentProgID = s 'CoEventISO.EventISO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{ED7CCC69-E412-45DE-BFC3-5FC209E24592}'
+		}
+	}
+}

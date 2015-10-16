@@ -1,0 +1,26 @@
+HKCR
+{
+	CoMCAISO.MCAISO.1 = s 'MCAISO Class'
+	{
+		CLSID = s '{462A7ED9-50F6-4208-BE1F-CD5A66CD1F22}'
+	}
+	CoMCAISO.MCAISO = s 'MCAISO Class'
+	{
+		CLSID = s '{462A7ED9-50F6-4208-BE1F-CD5A66CD1F22}'
+		CurVer = s 'CoMCAISO.MCAISO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {462A7ED9-50F6-4208-BE1F-CD5A66CD1F22} = s 'MCAISO Class'
+		{
+			ProgID = s 'CoMCAISO.MCAISO.1'
+			VersionIndependentProgID = s 'CoMCAISO.MCAISO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{B94956E1-E605-4A13-B05E-FD3A92627FC3}'
+		}
+	}
+}

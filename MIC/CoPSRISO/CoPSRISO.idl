@@ -1,0 +1,30 @@
+// CoPSRISO.idl : IDL source for CoJSRISO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoPSRISO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/IISO.idl"
+
+[
+	uuid(FC64E5D5-1A8A-49b5-9478-8EF1958EE319),
+	version(1.0),
+	helpstring("CoPSRISO 1.0 Type Library")
+]
+library COPSRISOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(07FCAEB4-073A-40a2-87FD-351AE0861221),
+		helpstring("PSRISO Class")
+	]
+	coclass PSRISO
+	{
+		[default] interface IISO;
+	};
+};

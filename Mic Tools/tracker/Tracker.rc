@@ -1,0 +1,358 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\Tracker.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "icon2.ico"
+IDI_BELL                ICON                    "res\\ico00006.ico"
+IDI_FLOPPY              ICON                    "res\\ico00007.ico"
+IDI_FACE                ICON                    "res\\ico00008.ico"
+IDI_BOMB                ICON                    "res\\ico00009.ico"
+IDI_SKULL               ICON                    "res\\ico00010.ico"
+IDI_FLAG                ICON                    "res\\ico00011.ico"
+IDI_CLOCK               ICON                    "res\\clock.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG  0, 0, 217, 68
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Tracker"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,10,5,21,20
+    LTEXT           "Multi-Instrument Collect Tracker",IDC_STATIC,40,2,119,11,SS_NOPREFIX
+    LTEXT           "",IDC_STATIC,40,50,159,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
+    LTEXT           "Los Alamos National Laboratory",IDC_STATIC,40,28,105,8
+    LTEXT           "N-4, D. Pelowitz",IDC_STATIC,40,39,170,8
+    LTEXT           "",IDC_STATIC_VERSION,40,15,127,8
+END
+
+IDD_TRACKER_DIALOG DIALOGEX 0, 0, 129, 48
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "MIC - Tracker"
+CLASS "TrackerClass"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    CTEXT           "Waiting for message from MIC",IDC_STATIC_WAIT,6,7,113,33
+END
+
+IDD_DIALOG1 DIALOG  0, 0, 400, 246
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Legend"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_RICHEDIT1,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_BORDER | WS_VSCROLL | WS_TABSTOP,7,7,386,232
+END
+
+IDD_DIALOG_CONFIG DIALOG  0, 0, 478, 177
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Tracker Configuration"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Main Dialog Box Name:",IDC_STATIC,7,8,75,8
+    GROUPBOX        "Send",IDC_STATIC,7,22,226,22
+    GROUPBOX        "Receive",IDC_STATIC,7,40,226,71
+    GROUPBOX        "HTML Output",IDC_STATIC,7,105,226,47
+    EDITTEXT        IDC_EDIT1,85,7,147,14,ES_AUTOHSCROLL
+    CONTROL         "Mailslot",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,12,51,39,10
+    CONTROL         "UDP packet",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,12,64,55,10
+    EDITTEXT        IDC_EDIT6,91,67,17,14,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT7,111,67,17,14,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT8,131,67,17,14,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT9,151,67,17,14,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT10,157,87,27,14,ES_CENTER | ES_AUTOHSCROLL
+    CONTROL         "Spin3",IDC_SPIN3,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,187,87,11,14
+    EDITTEXT        IDC_EDIT2,139,54,72,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,168,77,31,14,ES_CENTER | ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN2,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,201,77,10,14
+    EDITTEXT        IDC_EDIT3,122,116,31,14,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Spin1",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,154,116,11,14
+    EDITTEXT        IDC_EDIT4,61,133,165,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Cancel",IDCANCEL,145,156,50,14
+    DEFPUSHBUTTON   "OK",IDOK,71,156,50,14
+    RTEXT           "Mailslot Name:",IDC_STATIC_MS1,90,57,47,10
+    CONTROL         "Write HTML file",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,118,65,10
+    RTEXT           "File Refresh\n(Sec.)",IDC_STATIC,79,114,40,18
+    RTEXT           "File Name:",IDC_STATIC,21,135,38,8
+    RTEXT           "Look for Mailslot message every (mSec):",IDC_STATIC_MS2,91,76,74,17
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME | SS_SUNKEN,86,50,132,55
+    RTEXT           "UDP Port Number:",IDC_STATIC_UDP2,91,90,60,8
+    LTEXT           "Accept packet from:",IDC_STATIC_UDP1,90,55,65,8
+    CONTROL         "Allow Automatic Forwarding of packets to any Tracker Client",IDC_CHECK_AUTOFORWARD,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,31,213,10
+    CONTROL         "MIC",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_GROUP,171,64,44,10
+    CONTROL         "Tracker",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,171,74,44,10
+    LTEXT           "Sender is:",IDC_STATIC_UDP3,168,55,31,8
+    EDITTEXT        IDC_EDIT11,299,130,165,14,ES_AUTOHSCROLL
+    RTEXT           "Log File Name:",IDC_STATIC,247,132,48,8
+    CONTROL         "On Transition to RED do audio alarm.",IDC_CHECK_AUDIO,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,254,116,133,10
+    GROUPBOX        "Push TRACKER UDP",IDC_STATIC,246,7,226,47
+    COMBOBOX        IDC_COMBO_PUSH,254,17,211,78,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add",IDC_BUTTON_PUSHADD,343,35,58,14
+    PUSHBUTTON      "Delete",IDC_BUTTON_PUSHDELETE,406,35,50,14
+    GROUPBOX        "Push XML UDP",IDC_STATIC,246,55,226,49
+    COMBOBOX        IDC_COMBO_PUSHXML,253,66,214,78,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add or Edit Port",IDC_BUTTON_PUSHXMLADD,343,83,58,14
+    PUSHBUTTON      "Delete",IDC_BUTTON_PUSHXMLDELETE,406,83,50,14
+    CONTROL         "Send Status Changes along with Alarms",IDC_CHECK_SENDSTATUS,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,254,83,83,16
+    GROUPBOX        "Logging and Audio Alarm",IDC_STATIC,245,106,226,45
+    PUSHBUTTON      ">>",IDC_BUTTON_ADVANCED,213,155,20,14
+    CONTROL         "",IDC_STATIC_RIGHT,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,240,5,1,160
+    CONTROL         "",IDC_STATIC_RIGHT2,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,476,7,1,160
+END
+
+IDD_DIALOG2 DIALOG  0, 0, 187, 98
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,130,24,50,14
+END
+
+IDD_DIALOG_CONFIG2 DIALOG  0, 0, 165, 111
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Tracker Setup Display "
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,21,90,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,93,90,50,14
+    RTEXT           "Number of instrument columns:",IDC_STATIC,11,43,98,8
+    EDITTEXT        IDC_EDIT1,113,7,27,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin1",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,141,7,10,14
+    RTEXT           "Width of each instrument button:",IDC_STATIC,5,9,104,8
+    EDITTEXT        IDC_EDIT2,113,24,27,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin2",IDC_SPIN2,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,141,24,10,14
+    RTEXT           "Height of each instrument button:",IDC_STATIC,3,26,106,8
+    EDITTEXT        IDC_EDIT3,113,41,27,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin3",IDC_SPIN3,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,141,41,10,14
+    RTEXT           "Size of Instrument Icons:",IDC_STATIC,31,60,78,8
+    EDITTEXT        IDC_EDIT4,113,58,27,14,ES_CENTER | ES_NUMBER
+    CONTROL         "Spin4",IDC_SPIN4,"msctls_updown32",UDS_SETBUDDYINT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,141,58,10,14
+END
+
+IDD_DIALOG_GETPORT DIALOG  0, 0, 186, 95
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Port Number"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,31,74,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,110,74,50,14
+    LTEXT           "",IDC_STATIC_MESSAGE,7,20,172,8
+    LTEXT           "Enter Port Number for this address:",IDC_STATIC,7,7,110,8
+    EDITTEXT        IDC_EDIT_PORT,72,38,40,14,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,9,0,0
+ PRODUCTVERSION 1,9,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "Written by D. Pelowitz"
+            VALUE "CompanyName", "Los Alamos National Laboratory, N-4"
+            VALUE "FileDescription", "Tracker Application"
+            VALUE "FileVersion", "1.9.0.0"
+            VALUE "InternalName", "Multi-Instrument Collect Tracker"
+            VALUE "OriginalFilename", "Tracker.EXE"
+            VALUE "ProductName", "Tracker Application"
+            VALUE "ProductVersion", "1.9.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 61
+    END
+
+    IDD_TRACKER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 122
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 41
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 393
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 239
+    END
+
+    IDD_DIALOG_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 471
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 91
+    END
+
+    IDD_DIALOG_CONFIG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 158
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+    END
+
+    IDD_DIALOG_GETPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About Tracker..."
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif
+#include "res\Tracker.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

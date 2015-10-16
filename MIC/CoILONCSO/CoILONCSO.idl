@@ -1,0 +1,30 @@
+// CoILONCSO.idl : IDL source for CoILONCSO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoILONCSO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/ICSO.idl"
+
+[
+	uuid(973132C6-2A0B-44DD-93DC-7A8869F4ADBE),
+	version(1.0),
+	helpstring("CoILONCSO 1.0 Type Library")
+]
+library COILONCSOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(AEE74781-06DC-4928-8E8F-D1E281CF27AD),
+		helpstring("ILONCSO Class")
+	]
+	coclass ILONCSO
+	{
+		[default] interface ICSO;
+	};
+};

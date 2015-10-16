@@ -1,0 +1,26 @@
+HKCR
+{
+	CoLOCNUTCSO.LOCNUTCSO.1 = s 'LOCNUTCSO Class'
+	{
+		CLSID = s '{1DEF8026-4870-4d4b-80A2-21743A56D558}'
+	}
+	CoLOCNUTCSO.LOCNUTCSO = s 'LOCNUTCSO Class'
+	{
+		CLSID = s '{1DEF8026-4870-4d4b-80A2-21743A56D558}'
+		CurVer = s 'CoLOCNUTCSO.LOCNUTCSO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {1DEF8026-4870-4d4b-80A2-21743A56D558} = s 'LOCNUTCSO Class'
+		{
+			ProgID = s 'CoLOCNUTCSO.LOCNUTCSO.1'
+			VersionIndependentProgID = s 'CoLOCNUTCSO.LOCNUTCSO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{D740EA1D-E9B5-410f-893D-9B19CBBCF786}'
+		}
+	}
+}

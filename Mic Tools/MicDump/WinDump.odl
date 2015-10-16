@@ -1,0 +1,42 @@
+// WinDump.odl : type library source for WinDump.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (WinDump.tlb).
+
+[ uuid(B069CE61-AB13-45F4-BF3C-6A41F292E459), version(1.0) ]
+library WinDump
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+	//  Primary dispatch interface for CWinDumpDoc
+	
+	[ uuid(2EF5C629-D91D-488E-84F4-30193FF0F6DC) ]
+	dispinterface IWinDump
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CWinDumpDlgAutoProxy)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CWinDumpDlgAutoProxy)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CWinDumpDoc
+	
+	[ uuid(F1A24F4A-9FA2-4176-8385-CE9FBE204B62) ]
+	coclass WinDump
+	{
+		[default] dispinterface IWinDump;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sync", "Sync.vcproj", "{FC541B53-5F69-4E3B-90BD-DD2B979B0D93}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 1
+		SccProjectUniqueName0 = Sync.vcproj
+		SccProjectName0 = \u0022$/DelFi\u0022,\u0020HQAAAAAA
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC541B53-5F69-4E3B-90BD-DD2B979B0D93}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FC541B53-5F69-4E3B-90BD-DD2B979B0D93}.Debug|Win32.Build.0 = Debug|Win32
+		{FC541B53-5F69-4E3B-90BD-DD2B979B0D93}.Release|Win32.ActiveCfg = Release|Win32
+		{FC541B53-5F69-4E3B-90BD-DD2B979B0D93}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

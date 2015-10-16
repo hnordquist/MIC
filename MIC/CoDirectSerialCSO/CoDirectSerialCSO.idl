@@ -1,0 +1,30 @@
+// CoDirectSerialCSO.idl : IDL source for CoDirectSerialCSO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoDirectSerialCSO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/ICSO.idl"
+
+[
+	uuid(BF8D9537-C672-4A8C-B2D0-70B6352F977C),
+	version(1.0),
+	helpstring("CoDirectSerialCSO 1.0 Type Library")
+]
+library CODIRECTSERIALCSOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(7F36351B-8AAD-4799-AC44-1F23FD8505C2),
+		helpstring("DirectSerialCSO Class")
+	]
+	coclass DirectSerialCSO
+	{
+		[default] interface ICSO;
+	};
+};

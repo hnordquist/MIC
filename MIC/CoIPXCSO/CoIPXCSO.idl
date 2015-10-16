@@ -1,0 +1,30 @@
+// CoIPXCSO.idl : IDL source for CoIPXCSO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoIPXCSO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/ICSO.idl"
+
+[
+	uuid(FB9331BA-611A-4C21-A905-65E2ADFC5BF4),
+	version(1.0),
+	helpstring("CoIPXCSO 1.0 Type Library")
+]
+library COIPXCSOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(C2186BC1-FADA-440A-A7E8-8B1CEF2E8B5E),
+		helpstring("IPXCSO Class")
+	]
+	coclass IPXCSO
+	{
+		[default] interface ICSO;
+	};
+};

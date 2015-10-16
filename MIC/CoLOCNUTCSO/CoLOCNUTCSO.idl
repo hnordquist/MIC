@@ -1,0 +1,51 @@
+/*$History: CoLOCNUTCSO.idl $
+ * 
+ * *****************  Version 1  *****************
+ * User: Pelowitz     Date: 3/12/08    Time: 2:52p
+ * Created in $/MIC 2004/CoLOCNUTCSO
+ * At or near retirement (EOSS still being tested)
+ * 
+ * *****************  Version 1  *****************
+ * User: Pelowitz     Date: 9/13/06    Time: 12:39p
+ * Created in $/MIC 2.004/CoLOCNUTCSO
+ * 
+ * *****************  Version 1  *****************
+ * User: Pelowitz     Date: 1/11/06    Time: 7:47a
+ * Created in $/CoLOCNUTCSO
+ * 
+ * *****************  Version 1  *****************
+ * User: Pelowitz        Date: 11/15/2005
+ * Created in $/MIC 2.000/CoLOCNUTCSO
+ * 
+*/
+
+// CoLOCNUTCSO.idl : IDL source for CoLOCNUTCSO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoLOCNUTCSO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/ICSO.idl"
+
+[
+	uuid(D740EA1D-E9B5-410f-893D-9B19CBBCF786),
+	version(1.0),
+	helpstring("CoLOCNUTCSO 1.0 Type Library")
+]
+library COLOCNUTCSOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(1DEF8026-4870-4d4b-80A2-21743A56D558),
+		helpstring("LOCNUTCSO Class")
+	]
+	coclass LOCNUTCSO
+	{
+		[default] interface ICSO;
+	};
+};

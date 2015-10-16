@@ -1,0 +1,439 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<LINK href="EossReaderStyleSheet.css" type="text/css" rel="stylesheet" media="screen">
+		<LINK href="EossReaderPrintStyleSheet.css" type="text/css" rel="stylesheet" media="print">
+		<script language="JavaScript" src="EossIncludes.js"></script>
+		<script language="JavaScript">
+			function window.onload()
+			{
+				try {
+               // logon status
+               if (!(ISeal.LoggedOn)) {
+						window.location.href ="EossReaderBlank.htm";
+                  return;
+					}
+               // cursor shape
+               Body.style.cursor = "wait";
+					// complete the caption
+					SerialNumber.innerText = ISeal.SerialNumber;
+					// seal status
+					if (ISession.GetValue("Details")) {
+						Toggle.innerText = "Hide Details <<";
+						Details.style.display = "block";
+					} else {
+						Toggle.innerText = "Details >>";
+						Details.style.display = "none";
+					}
+					try {
+						ISeal.GetStatus();
+						ProcessStatus();
+					}
+					catch (e) {
+						window.location.href ="EossReaderError.htm";
+					}
+					Body.style.cursor = "default";
+				}
+				catch (e) {
+					window.location.href ="EossReaderBlank.htm";
+				}
+			}
+
+			function AddMessage(Image, Text)
+			{
+				var Row = Messages.insertRow();
+				var Cell = Row.insertCell();
+				Cell.innerHTML = "<img src=" + Image + ">";
+				Cell.width = 30;
+				Cell = Row.insertCell();
+				Cell.innerText = Text;
+			}
+			function GetValue(ParentNode, ValueName)
+			{
+				try {
+					var ValueNode = ParentNode.selectSingleNode(ValueName);
+					if (ValueNode) return ValueNode.text;
+				} catch (e)
+				{
+					return "";
+				}
+			}
+			function ProcessStatus()
+			{
+				try {
+					var XPath = "//eoss/seal[@sn='" + ISeal.SerialNumber+ "']/key[@no='" + ISeal.KeysetNumber + "'][@date='" + ISeal.KeysetDate + "'][@time='" + ISeal.KeysetTime + "']/status/plain";
+					var StatusNode = IDocument.selectSingleNode(XPath);
+					if (!StatusNode) return;
+
+               // seal time
+					SealTime.innerHTML = "Seal date/time: " +StatusNode.getAttribute("date") + ' ' + StatusNode.getAttribute("time");
+					var Deviation = ISeal.Deviation;
+					if (Math.abs(Deviation) > 1)
+						SealTime.innerHTML += "<br>Deviation: " + Deviation + " seconds";
+               else
+                  SealTime.innerHTML += "<br>Deviation: none";
+
+					// main battery status
+               Volts = GetValue(StatusNode, "bat-volts");
+               mAh = GetValue(StatusNode, "bat-consumed");
+               Juice = (2000 - mAh) / 20;
+               if (Juice < 0) Juice = 0;
+               if (Volts < 1.8) Juice = 0;
+               BatteryPercentage.innerText = "Battery charge: " + Math.round(Juice) + "%";
+               BatteryGauge.src = "Bat10.gif";
+               if (Juice > 10) BatteryGauge.src = "Bat20.gif";
+               if (Juice > 20) BatteryGauge.src = "Bat30.gif";
+               if (Juice > 30) BatteryGauge.src = "Bat40.gif";
+               if (Juice > 40) BatteryGauge.src = "Bat50.gif";
+               if (Juice > 50) BatteryGauge.src = "Bat60.gif";
+               if (Juice > 60) BatteryGauge.src = "Bat70.gif";
+               if (Juice > 70) BatteryGauge.src = "Bat80.gif";
+               if (Juice > 80) BatteryGauge.src = "Bat90.gif";
+               if (Juice > 90) BatteryGauge.src = "Bat100.gif";
+					var Warnings = 0;
+					if (!ISeal.KeysetNumber) {
+						Warnings++;
+						AddMessage("excl.gif", "Key-set erased!");
+                  keysetimg.src="excl.gif";
+					}
+					if (GetValue(StatusNode, "protection") != "safe") {
+						Warnings++;
+						AddMessage("excl.gif", "Inner housing opened!");
+                  protimg.src = "excl.gif";
+					}
+					if (GetValue(StatusNode, "housing") != "closed") {
+						Warnings++;
+						AddMessage("excl.gif", "Battery compartment opened!");
+                  batcompimg.src = "excl.gif";
+					}
+					if (GetValue(StatusNode, "sealwire") != "closed") {
+						Warnings++;
+						AddMessage("excl.gif", "Seal wire opened!");
+                  wireimg.src = "excl.gif";
+					}
+					if ((mAh > 2000) | (Volts < 1.8)) {
+						Warnings++;
+						AddMessage("excl.gif", "Battery exhausted!");
+                  if (mAh > 2000) {
+                     batconsimg.src = "excl.gif";
+                  }
+                  if (Volts < 1.8) {
+                     batvoltsimg.src = "excl.gif";
+                  }
+					}
+					if (!Warnings) {
+						AddMessage("tick.gif", "Everything is okay");
+					}
+					operator1.innerText = GetValue(StatusNode, 'operator1');
+					operator2.innerText = GetValue(StatusNode, 'operator2');
+					keyset.innerText = ISeal.KeysetNumber + " " + ISeal.KeysetDate + " " + ISeal.KeysetTime;
+					sealwire.innerText = GetValue(StatusNode, "sealwire");
+					protection.innerText = GetValue(StatusNode, "protection");
+					housing.innerText = GetValue(StatusNode, "housing");
+					extpower.innerText = GetValue(StatusNode, "ext-power");
+               batvolts.innerText = GetValue(StatusNode, "bat-volts") + " V";
+					batconsumed.innerText = GetValue(StatusNode, "bat-consumed") + " of 2000 mAh";
+					battype.innerText = GetValue(StatusNode, "bat-type");
+					batid.innerText = GetValue(StatusNode, "bat-id");
+					batmfg.innerText = GetValue(StatusNode, "bat-manufactured");
+					batinst.innerText = GetValue(StatusNode, "bat-installed");
+					ebatvolts.innerText = GetValue(StatusNode, "ebat-volts") + " V";
+					ebatconsumed.innerText = GetValue(StatusNode, "ebat-consumed") + " of 170 mAh";
+					ebatmfg.innerText = GetValue(StatusNode, "ebat-manufactured");
+					ebatinst.innerText = GetValue(StatusNode, "ebat-installed");
+					temperature.innerText = GetValue(StatusNode, "temperature") + " °C";
+					vacenabled.innerText = GetValue(StatusNode, "vacenabled");
+					vacattach.innerText = GetValue(StatusNode, "vacattach");
+					flashwarnings.innerText = GetValue(StatusNode, "flash-warnings");
+					flasherrors.innerText = GetValue(StatusNode, "flash-errors");
+					ramwarnings.innerText = GetValue(StatusNode, "ram-warnings");
+					ramerrors.innerText = GetValue(StatusNode, "ram-errors");
+
+				} catch (e) {};
+			}
+			function ToggleDetails()
+			{
+				if (ISession.GetValue("Details")) {
+					ISession.SetValue("Details", false)
+					Details.style.display = "none";
+					Toggle.innerText = "Details >>";
+				} else {
+					ISession.SetValue("Details", true)
+					Details.style.display = "block";
+					Toggle.innerText = "Hide Details <<";
+				}
+			}
+			function Logoff()
+			{
+				try {
+					ISeal.Logoff();
+					window.location.href ="EossReaderSeal.htm";
+				}
+				catch (e) {
+					window.location.href ="EossReaderError.htm";
+				}
+			}
+			
+		</script>
+	</head>
+	<body id="Body">
+		<h1>EOSS S/N <span id="SerialNumber"></span>
+		</h1>
+		<table cellSpacing="0" cellPadding="0" width="100%">
+			<tr>
+				<td class="corner" width="5" height="5"><img src="ulsb.gif"></td>
+				<td class="windowcaption"></td>
+				<td class="corner" width="5" height="5"><img src="ursb.gif"></td>
+			</tr>
+			<tr class="windowcaption">
+				<td width="5"></td>
+				<td>Actions</td>
+				<td width="5"></td>
+			</tr>
+		</table>
+		<table class="windowframe" cellSpacing="0" cellPadding="5" width="100%">
+			<tr class="info">
+				<td>
+					<b>Seal Status</b>
+				</td>
+			</tr>
+			<tr class="info" height="50">
+				<td>
+					<table class="info" cellSpacing="0" cellPadding="0" width="100%">
+						<tr class="info" valign="top">
+							<td id="SealTime"></td>
+							<td align="middle"><div id="BatteryPercentage"></div>
+								<img id="BatteryGauge" src="void.gif"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="info" height="100">
+				<td>
+					<table class="info" id="Messages" cellSpacing="0" cellPadding="1" width="100%">
+					</table>
+				</td>
+			</tr>
+			<tr class="info">
+				<td><a id="Toggle" onclick="ToggleDetails()" href="#">Details &gt;&gt;</a></td>
+			</tr>
+			<tr class="info">
+				<td>
+					<table class="info" id="Details" cellSpacing="0" cellPadding="1" width="100%">
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">Operator 1:</td>
+							<td id="operator1" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">Operator 2:</td>
+							<td id="operator2" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30"><img id="keysetimg" src="void.gif">
+							</dt>
+							<td class="detail">Key-set:</td>
+							<td id="keyset" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30"><img id="wireimg" src="void.gif">
+							</dt>
+							<td class="detail">Seal wire:</td>
+							<td id="sealwire" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30"><img id="protimg" src="void.gif">
+							</dt>
+							<td class="detail">Drill protection:</td>
+							<td id="protection" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">External power:</td>
+							<td id="extpower" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detailheader">Main battery</td>
+							<td class="detailheader"></td>
+						</tr>
+						<tr class="info">
+							<td width="30"><img id="batcompimg" src="void.gif">
+							</dt>
+							<td class="detail">&nbsp;- Compartment:</td>
+							<td id="housing" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30"><img id="batvoltsimg" src="void.gif">
+							</dt>
+							<td class="detail">&nbsp;- Voltage:</td>
+							<td id="batvolts" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30"><img id="batconsimg" src="void.gif">
+							</dt>
+							<td class="detail">&nbsp;- Power consumed:</td>
+							<td id="batconsumed" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Type:</td>
+							<td id="battype" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- ID:</td>
+							<td id="batid" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Manufactured:</td>
+							<td id="batmfg" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Installed:</td>
+							<td id="batinst" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detailheader">Emergency battery</td>
+							<td class="detailheader"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Voltage:</td>
+							<td id="ebatvolts" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30"><img id="ebatimg" src="void.gif">
+							</dt>
+							<td class="detail">&nbsp;- Power consumed:</td>
+							<td id="ebatconsumed" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Manufactured:</td>
+							<td id="ebatmfg" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Installed:</td>
+							<td id="ebatinst" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">Temperature:</td>
+							<td id="temperature" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detailheader">VACOSS emulation</td>
+							<td class="detailheader"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Enabled:</td>
+							<td id="vacenabled" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Attachments:</td>
+							<td id="vacattach" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detailheader">Flash memory</td>
+							<td class="detailheader"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Warnings:</td>
+							<td id="flashwarnings" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Errors:</td>
+							<td id="flasherrors" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detailheader">Majority-vote memory</td>
+							<td class="detailheader"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							</dt>
+							<td class="detail">&nbsp;- Warnings:</td>
+							<td id="ramwarnings" class="detail"></td>
+						</tr>
+						<tr class="info">
+							<td width="30">
+							<td class="detail">&nbsp;- Errors:</td>
+							<td id="ramerrors" class="detail"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="info">
+				<td>
+					<table cellSpacing="1" cellPadding="5" width="100%">
+						<tr class="menu">
+							<td><b>What would you like to do?</b></td>
+						</tr>
+						<tr class="menu">
+							<td><a href="EossReaderInterrogation.htm">&gt;&gt; Interrogate the seal and view the 
+									event log</a>
+							</td>
+						</tr>
+						<tr class="menu">
+							<td><a href="EossReaderInspectionData.htm">&gt;&gt; View and/or edit inspection data</a>
+							</td>
+						</tr>
+						<tr class="menu">
+							<td><a href="EossReaderSynchronization.htm">&gt;&gt; Synchronize the seal clock</a>
+							</td>
+						</tr>
+						
+						<!--
+						<tr class="menu">
+							<td><a href="EossReaderInitialization.htm">&gt;&gt; Initialize the seal</a>
+							</td>
+						</tr>
+						-->
+						<tr class="menu">
+							<td><INPUT id="LogoffButton" type="button" value="Logoff" name="LogoffButton" title="Logoff"
+									onclick="Logoff()"/>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</body>
+</html>

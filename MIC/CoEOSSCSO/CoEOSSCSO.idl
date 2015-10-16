@@ -1,0 +1,30 @@
+// CoEOSSCSO.idl : IDL source for CoEOSSCSO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoEOSSCSO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/ICSO.idl"
+
+[
+	uuid(81AA1A65-55A7-41c4-B164-B03F7DFFD83E),
+	version(1.0),
+	helpstring("CoEOSSCSO 1.0 Type Library")
+]
+library COEOSSCSOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(6710F5EB-794B-485b-945E-345EBBA3FFC3),
+		helpstring("EOSSCSO Class")
+	]
+	coclass EOSSCSO
+	{
+		[default] interface ICSO;
+	};
+};

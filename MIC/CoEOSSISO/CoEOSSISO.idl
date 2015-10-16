@@ -1,0 +1,27 @@
+// CoEOSSISO.idl : IDL source for CoEOSSISO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoEOSSISO.tlb) and marshalling code.
+
+#include "../Interfaces/IISO.idl"
+
+[
+	uuid(523FA2FC-42B4-4b15-8969-D4BB25B0CEC6),
+	version(1.0),
+	helpstring("CoEOSSISO 1.0 Type Library")
+]
+library COEOSSISOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(EC0CD914-4F34-4c25-BFC0-867155ED9BE5),
+		helpstring("EOSSISO Class")
+	]
+	coclass EOSSISO
+	{
+		[default] interface IISO;
+	};
+};

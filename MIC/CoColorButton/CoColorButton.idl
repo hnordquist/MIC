@@ -1,0 +1,30 @@
+// CoColorButton.idl : IDL source for CoColorButton.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (CoColorButton.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+#include "../Interfaces/ICB.idl"
+
+[
+	uuid(440D14EB-7014-48D8-B9CC-F8A79AA2AF7D),
+	version(1.0),
+	helpstring("CoColorButton 1.0 Type Library")
+]
+library COCOLORBUTTONLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(2B1A162B-1FBC-49EC-A9C7-5DE13A2E1061),
+		helpstring("ColorButton Class")
+	]
+	coclass ColorButton
+	{
+		[default] interface ICB;
+	};
+};
