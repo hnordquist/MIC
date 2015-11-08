@@ -1765,11 +1765,11 @@ void CDoFileCopy::OnBegincopyButton()
 		fprintf(m_pIPFile,"[GENERAL]\n");
 		fprintf(m_pIPFile,"FACILITY=%s\n",g_sFacilityName);
 		fprintf(m_pIPFile,"PREVIOUS=%s\n",Previous);
-		fprintf(m_pIPFile,"DATE_TIME=%s\n",m_pDateTime);
-		fprintf(m_pIPFile,"INSPECTOR_NAME=%s\n",m_pInspectorName);
-		fprintf(m_pIPFile,"INSPECTOR_ID=%s\n",m_pInspectorID);
-		fprintf(m_pIPFile,"INSPECTION_NUMBER=%s\n",m_pInspection);
-		fprintf(m_pIPFile,"MIC_VERSION=%s\n",g_csVersion);
+		fprintf(m_pIPFile,"DATE_TIME=%s\n",m_pDateTime.GetString());
+		fprintf(m_pIPFile,"INSPECTOR_NAME=%s\n",m_pInspectorName.GetString());
+		fprintf(m_pIPFile,"INSPECTOR_ID=%s\n",m_pInspectorID.GetString());
+		fprintf(m_pIPFile,"INSPECTION_NUMBER=%s\n",m_pInspection.GetString());
+		fprintf(m_pIPFile,"MIC_VERSION=%s\n",g_csVersion.GetString());
 
 		BSTR bstrID, bstrName, bstrDiscoveryType;
 		char cID[_MAX_PATH], cName[_MAX_PATH];
@@ -2408,7 +2408,7 @@ bool CDoFileCopy::DoCopy(char* Suffix, CString* FullPath,char* SourceDir,char*Id
 								if (FileOp.fAnyOperationsAborted)
 									return false;
 
-								fprintf(m_pIPFile,"%d=%s=COPYARCHIVEFILE\n",m_dEntryCount++,InFilePathNameExt);
+								fprintf(m_pIPFile,"%d=%s=COPYARCHIVEFILE\n",m_dEntryCount++,InFilePathNameExt.GetString());
 							}
 						}
 						_splitpath(LPCTSTR(NewDestination),ddrive,ddir,dfname,dext);
@@ -2476,7 +2476,7 @@ bool CDoFileCopy::DoCopy(char* Suffix, CString* FullPath,char* SourceDir,char*Id
 					//bump the a00. so we and the user won't have a conflict
 					if (FileTooBig)
 					{
-						fprintf(m_pIPFile,"%d=%s=FAILCOPY\n",m_dEntryCount++,InFilePathNameExt);
+						fprintf(m_pIPFile,"%d=%s=FAILCOPY\n",m_dEntryCount++,InFilePathNameExt.GetString());
 						CString f("File ");
 						f += InFileArchivePathNameExt;
 						f += "\nWon't fit on this type of media!\nCompress and copy by hand!";
@@ -2511,7 +2511,7 @@ bool CDoFileCopy::DoCopy(char* Suffix, CString* FullPath,char* SourceDir,char*Id
 						SHFileOperation(&FileOp);
 						if (FileOp.fAnyOperationsAborted)
 							return false;
-						fprintf(m_pIPFile,"%d=%s=COPYFILE\n",m_dEntryCount++,InFilePathNameExt);
+						fprintf(m_pIPFile,"%d=%s=COPYFILE\n",m_dEntryCount++,InFilePathNameExt.GetString());
 					}
 					iNotDone = _findnext(hFileFind,&fileinfo);
 				}

@@ -823,7 +823,7 @@ void CMicMgrDlg::DoSOHCmd(char* szFileName)
 		CString cInstType;
 		GetWindowText(cString);
 		COleDateTime cCurrentDT = COleDateTime::GetCurrentTime();
-		fprintf(outfile,"%s\n%s\n\n",cString, cCurrentDT.Format("%Y.%m.%d %H:%M:%S"));
+		fprintf(outfile,"%s\n%s\n\n",cString.GetString(), cCurrentDT.Format("%Y.%m.%d %H:%M:%S").GetString());
 		//get summary of disk drives
 		fprintf(outfile,"Drive Status:\n");
 		char szDrive[8];
@@ -927,7 +927,7 @@ void CMicMgrDlg::DoSOHCmd(char* szFileName)
 		if (bfileclosed)
 			outfile = fopen(szFileName,"at");
 
-		fprintf(outfile,"%s\n%s\nEND OF FILE\n",cString, cCurrentDT.Format("%Y.%m.%d %H:%M:%S"));
+		fprintf(outfile,"%s\n%s\nEND OF FILE\n",cString.GetString(), cCurrentDT.Format("%Y.%m.%d %H:%M:%S").GetString());
 		fclose(outfile);
 	}
 }
@@ -1761,7 +1761,9 @@ void CMicMgrDlg::OnSysCommand(UINT nID, LPARAM lParam)
 			"  File name may contain %Y_%m_%d %H,%M,%S"
 		    "  Check \"Do once per day\" and set \"0\" above to force a specific time.";
 		cTimeDlg.m_cMsg2 = "Generate extended SOH files every (hours):";											//scr00079
-		cTimeDlg.m_cMsg3 = "Location and File Name: (invalid chars: "INVALIDFILENAMECHARS")\n (Example: C:\\SOH_%Y_%m_%d_%H_%M_%S.txt)";
+		cTimeDlg.m_cMsg3 = "Location and File Name: (invalid chars: ";
+		cTimeDlg.m_cMsg3.Append(INVALIDFILENAMECHARS);
+		cTimeDlg.m_cMsg3.Append(")\n (Example: C:\\SOH_%Y_%m_%d_%H_%M_%S.txt)");
 		m_uiHours = GetPrivateProfileInt(CONFIGURATION,SOH_TIME_EXT,0,g_szIniFile);
 
 		GetPrivateProfileString(CONFIGURATION,SOH_LIMITED_EXT,"No",szTemp,sizeof(szTemp),g_szIniFile);
@@ -2768,7 +2770,7 @@ void CMicMgrDlg::PrintButtonStatus(
 		else
 			strcat(szState,"        ");
 
-		fprintf(outfile,"%-8s %32s: %s %s\n",szType, cNameText,szState,cSecondText);
+		fprintf(outfile,"%-8s %32s: %s %s\n",szType, cNameText.GetString(),szState,cSecondText.GetString());
 	}
 }
 /////////////////////////////////////////////////////////////////
