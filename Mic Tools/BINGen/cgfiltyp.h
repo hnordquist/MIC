@@ -1,3 +1,12 @@
+//- -----------------------------------------------------------------
+//- (C) Copyright 2000 Blake V. Miller
+//- All Rights Reserved.
+//- -----------------------------------------------------------------
+//- File	:	CGFILTYP.H
+//-	Author	:	Blake Miller
+//-	Version	:	June 16, 2000
+//-	Purpose	:	File Type Access
+//- -----------------------------------------------------------------
 
 #if	_MSC_VER > 1000
 #pragma once
