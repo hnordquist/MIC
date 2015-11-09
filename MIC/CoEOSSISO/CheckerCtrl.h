@@ -1,3 +1,6 @@
+//Author:			Mehdi Mousavi
+//Data of release:	8th of September, 2000
+//Email:			Webmaster@modemmania.com
 #if !defined(AFX_CHECKERCTRL_H__AD4BC4E3_7750_11D4_8718_008048CA4A77__INCLUDED_)
 #define AFX_CHECKERCTRL_H__AD4BC4E3_7750_11D4_8718_008048CA4A77__INCLUDED_
 

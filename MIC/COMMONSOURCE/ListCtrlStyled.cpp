@@ -1,5 +1,8 @@
 // ListCtrlStyled.cpp 
 
+// "CListCtrlStyled" by ANDRE Sébastien @2002 (maximus@oreka.com) (http://divxdede.fr.st)
+//
+
 #include "stdafx.h"
 #include "ListCtrlStyled.h"
 
