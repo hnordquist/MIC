@@ -3,7 +3,7 @@ This work was supported by the United States Member State Support Program to IAE
 the U.S. Department of Energy, Office of Nonproliferation and National Security, International
 Safeguards Division; and the U.S. Department of Energy, Office of Safeguards and Security.
 
-LA-CC-14-040. This software was exported from the United States in accordance with the Export
+LA-CC-14-089. This software was exported from the United States in accordance with the Export
 Administration Regulations. Diversion contrary to U.S. law prohibited.
 
 Copyright 2015, Los Alamos National Security, LLC. This software application and associated
